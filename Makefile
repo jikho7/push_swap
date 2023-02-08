@@ -6,7 +6,7 @@
 #    By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:49:08 by jdefayes          #+#    #+#              #
-#    Updated: 2023/02/07 20:04:35 by jdefayes         ###   ########.fr        #
+#    Updated: 2023/02/08 15:36:14 by jdefayes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ NAME	= push_swap
 ###################################
 ##SOURCES
 SRC		=	push_swap.c\
+			utils.c\
+			handle_lists.c\
 
 OBJ		= ${SRC:.c=.o}
 FLAGS	= -Wall -Werror -Wextra -g

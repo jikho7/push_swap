@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/08 12:25:46 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:41:01 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,17 @@ typedef struct s_data
 
 size_t		ft_strlen(const char *s);
 void		bubble_sort(int *tab, int size);
-t_element	*ft_lstnew(t_data *data);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
-int			ft_lstsize(t_element *lst); // modif type, was t_list *lst
+void		display_node(t_element *lst);
+
 t_list		*initialisation();
+void		insertion(t_list *list, t_data *data);
+
+t_element	*ps_lstnew(t_data *data, t_list *list);
+t_list		*ps_lstlast(t_list *lst);
+void		ps_lstadd_back(t_list **lst, t_list *new);
+void		ps_lstadd_front(t_list **lst, t_list *new);
+int			ps_lstsize(t_list *lst);
+
 # endif
