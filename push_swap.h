@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/08 15:41:01 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:24:15 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
 void		display_node(t_element *lst);
 
-t_list		*initialisation();
+//t_list		*initialisation();
 void		insertion(t_list *list, t_data *data);
 
 t_element	*ps_lstnew(t_data *data, t_list *list);

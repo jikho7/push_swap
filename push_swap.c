@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/08 15:36:46 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:28:24 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 int main (int ac, char	**av)
 {
 	//t_element *element;
-	t_list *list;
+	t_list *list = NULL;
+	list = malloc(sizeof(*list));
 	t_data data = {1, 0, 0, 0, NULL, &av[data.i]};
 	data.tab = malloc(sizeof(int) * ac);
 	data.i = 1;
-	list = initialisation();
+	//list = initialisation();
 	while (av[data.i])
 	{
 		data.tab[data.j] = atoi(av[data.i++]);
@@ -31,12 +32,12 @@ int main (int ac, char	**av)
 	}
 	data.j = 0;
 	bubble_sort(data.tab, data.size);
-	// while (data.j < data.size)
+	//while (data.j < data.size)
 	// 	printf("SORTED:%d\n", data.tab[data.j++]);
+	data.j = 0;
 	int c = 0;
 	while(c < 3)
 	{
-		printf("jksh");
 		insertion(list, &data);
 		display_node(list->first);
 		data.j++;
@@ -59,20 +60,20 @@ void display_node(t_element *lst)
 
 
 
-t_list *initialisation()
-{
-    t_list *list = malloc(sizeof(*list));
-    t_element *element = malloc(sizeof(*element));
+// t_list *initialisation()
+// {
+//     t_list *list = malloc(sizeof(*list));
+//     t_element *element = malloc(sizeof(*element));
 
-    if (list == NULL || element == NULL)
-        exit(0);
+//     if (list == NULL || element == NULL)
+//         exit(0);
 
-    element->nbr = 0;
-    element->next = NULL;
-    list->first = element;
+//     element->nbr = 0;
+//     element->next = NULL;
+//     list->first = element;
 
-    return (list);
-}
+//     return (list);
+// }
 
 	// (*new_element).nbr = data->tab[data->j];
 	// (*new_element).idx = data->j;

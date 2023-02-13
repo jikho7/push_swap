@@ -6,12 +6,12 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:36:18 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/08 15:39:41 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:26:17 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
-
+/*
 t_list	*ps_lstlast(t_list *lst)
 {
 	if (lst != NULL)
@@ -23,6 +23,7 @@ t_list	*ps_lstlast(t_list *lst)
 	else
 		return (lst);
 }
+*/
 
 void insertion(t_list *list, t_data *data)
 {
@@ -38,6 +39,7 @@ void insertion(t_list *list, t_data *data)
     list->first = new_element;
 }
 
+/*
 int	ps_lstsize(t_list *lst)
 {
 	int	nbr_element;
@@ -52,6 +54,7 @@ int	ps_lstsize(t_list *lst)
 	}
 	return (nbr_element);
 }
+
 
 void	ps_lstadd_back(t_list **lst, t_list *new)
 {
@@ -68,12 +71,13 @@ void	ps_lstadd_back(t_list **lst, t_list *new)
 			*lst = new;
 	}
 }
+*/
+
 
 /*
 t_element	*ps_lstnew(t_data *data)
 {
 	t_element	*new_element;
-
 	new_element = ft_calloc(1, (sizeof(t_list)));
 	if (new_element == NULL)
 		return (NULL);
