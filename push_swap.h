@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/13 15:24:15 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:49:14 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_element
+typedef struct s_lst
 {
 	int			nbr;
 	int			idx;
-	struct s_element	*next;
-	struct s_element	*back;
-}t_element;
-
-typedef struct s_list
-{
-	t_element *first;
-}t_list;
+	struct s_lst	*next;
+	struct s_lst	*back;
+}t_lst;
 
 typedef struct s_data
 {
@@ -44,15 +39,17 @@ size_t		ft_strlen(const char *s);
 void		bubble_sort(int *tab, int size);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
-void		display_node(t_element *lst);
+void		display_node(t_lst *lst);
+t_lst	*ft_lstnew(t_data *data);
+void		insertion(t_lst *list, t_data *data);
 
-//t_list		*initialisation();
-void		insertion(t_list *list, t_data *data);
-
-t_element	*ps_lstnew(t_data *data, t_list *list);
-t_list		*ps_lstlast(t_list *lst);
-void		ps_lstadd_back(t_list **lst, t_list *new);
-void		ps_lstadd_front(t_list **lst, t_list *new);
-int			ps_lstsize(t_list *lst);
+t_lst	*ps_lstnew(t_data *data, t_lst *list);
+t_lst		*ps_lstlast(t_lst *lst);
+void		ps_lstadd_back(t_lst **lst, t_lst *new);
+void		ps_lstadd_front(t_lst **lst, t_lst *new);
+int			ps_lstsize(t_lst *lst);
+void push_front(t_lst ** head, t_data *val);
+void push_end(t_lst *head, t_data *val);
+void display_lst(t_lst **first_node, char *name);
 
 # endif

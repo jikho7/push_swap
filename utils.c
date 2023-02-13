@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:04:16 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/13 15:22:53 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:55:26 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,3 @@ void bubble_sort(int *tab, int size)
 	}
 }
 
-t_element	*ft_lstnew(t_data *data, t_list *list)
-{
-	t_element	*new_element;
-
-	new_element = malloc(sizeof(*new_element));
-	if (new_element == NULL || list != NULL)
-		return (NULL);
-	(*new_element).nbr = data->tab[data->j];
-	(*new_element).idx = data->j;
-	new_element->next = list->first;
-	list->first = new_element;
-	//new_element->back = NULL;
-	return (new_element);
-}

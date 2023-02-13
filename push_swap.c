@@ -6,23 +6,20 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/13 15:28:24 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:21:42 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new);
-
 int main (int ac, char	**av)
 {
-	//t_element *element;
-	t_list *list = NULL;
-	list = malloc(sizeof(*list));
+	char name[] = "plop";
+	t_lst *element;
+	t_lst *first;
 	t_data data = {1, 0, 0, 0, NULL, &av[data.i]};
 	data.tab = malloc(sizeof(int) * ac);
 	data.i = 1;
-	//list = initialisation();
 	while (av[data.i])
 	{
 		data.tab[data.j] = atoi(av[data.i++]);
@@ -35,18 +32,28 @@ int main (int ac, char	**av)
 	//while (data.j < data.size)
 	// 	printf("SORTED:%d\n", data.tab[data.j++]);
 	data.j = 0;
+
+	element = ft_lstnew(&data);
+	printf("first node:\n");
+	display_node(element);
+	first = element;
+	printf("first node copy:\n");
+	display_node(first);
+	printf("sdjf\n");
+
 	int c = 0;
-	while(c < 3)
+	while(c < ac - 2)
 	{
-		insertion(list, &data);
-		display_node(list->first);
+		push_end(element, &data);
+		display_node(element->next);
 		data.j++;
+		element = element->next;
 		c++;
 	}
-	//printf("HOW:%d",ft_lstsize(&list));
+	display_lst(&first, name);
 }
 
-void display_node(t_element *lst)
+void display_node(t_lst *lst)
 {
 	if (lst != NULL)
 	{
@@ -59,52 +66,44 @@ void display_node(t_element *lst)
 }
 
 
+t_lst	*ft_lstnew(t_data *data)
+{
+	t_lst	*new_element;
 
-// t_list *initialisation()
-// {
-//     t_list *list = malloc(sizeof(*list));
-//     t_element *element = malloc(sizeof(*element));
-
-//     if (list == NULL || element == NULL)
-//         exit(0);
-
-//     element->nbr = 0;
-//     element->next = NULL;
-//     list->first = element;
-
-//     return (list);
-// }
-
-	// (*new_element).nbr = data->tab[data->j];
-	// (*new_element).idx = data->j;
-	// new_element->next = list->first;
-	// list->first = new_element;
+	new_element = ft_calloc(1, (sizeof(t_lst)));
+	if (new_element == NULL)
+		return (NULL);
+	(*new_element).nbr = data->tab[data->j];
+	(*new_element).idx = data->j;
+	new_element->next = NULL;
+	data->j++;
+	return (new_element);
+}
 
 
-/*
 void display_lst(t_lst **first_node, char *name)
 {
-t_lst *current_node;
-int count;
-current_node = *first_node;
-count = 0;
-printf("\n%s :\n", name);
-if (*first_node != NULL)
-{
-while (current_node->next != NULL)
-{
-printf("Index = %d : ", count);
-display_node(current_node);
-current_node = current_node->next;
-count++;
+	t_lst *current_node;
+	int count;
+	current_node = *first_node;
+	count = 0;
+	printf("\n%s :\n", name);
+	if (*first_node != NULL)
+	{
+		while (current_node->next != NULL)
+		{
+			printf("Index = %d : ", count);
+			display_node(current_node);
+			current_node = current_node->next;
+			count++;
+		}
+		printf("Index = %d : ", count);
+		display_node(current_node);
+	}
+	else
+	{
+		printf("The stack is empty.\n");
+	}
+	printf("\n");
 }
-printf("Index = %d : ", count);
-display_node(current_node);
-}
-else
-{
-printf("The stack is empty.\n");
-}
-printf("\n");
-}
-*/
+
