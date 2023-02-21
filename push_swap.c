@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/13 18:21:42 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:00:36 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int main (int ac, char	**av)
 {
-	char name[] = "plop";
+	int c = 0;
+	char name[] = "liste A";
 	t_lst *element;
-	t_lst *first;
+	t_lst *head;
+
 	t_data data = {1, 0, 0, 0, NULL, &av[data.i]};
 	data.tab = malloc(sizeof(int) * ac);
 	data.i = 1;
@@ -36,12 +38,10 @@ int main (int ac, char	**av)
 	element = ft_lstnew(&data);
 	printf("first node:\n");
 	display_node(element);
-	first = element;
-	printf("first node copy:\n");
-	display_node(first);
-	printf("sdjf\n");
+	head = element;
+	//printf("first node copy:\n");
+	//display_node(head);
 
-	int c = 0;
 	while(c < ac - 2)
 	{
 		push_end(element, &data);
@@ -50,7 +50,7 @@ int main (int ac, char	**av)
 		element = element->next;
 		c++;
 	}
-	display_lst(&first, name);
+	display_lst(&head, name);
 }
 
 void display_node(t_lst *lst)
@@ -64,7 +64,6 @@ void display_node(t_lst *lst)
 			lst->next);
 	}
 }
-
 
 t_lst	*ft_lstnew(t_data *data)
 {
@@ -80,15 +79,14 @@ t_lst	*ft_lstnew(t_data *data)
 	return (new_element);
 }
 
-
-void display_lst(t_lst **first_node, char *name)
+void display_lst(t_lst **ptr_to_head, char *name)
 {
 	t_lst *current_node;
 	int count;
-	current_node = *first_node;
+	current_node = *ptr_to_head;
 	count = 0;
 	printf("\n%s :\n", name);
-	if (*first_node != NULL)
+	if (*ptr_to_head != NULL)
 	{
 		while (current_node->next != NULL)
 		{

@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/13 17:49:14 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:46:17 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,19 @@ t_lst		*ps_lstlast(t_lst *lst);
 void		ps_lstadd_back(t_lst **lst, t_lst *new);
 void		ps_lstadd_front(t_lst **lst, t_lst *new);
 int			ps_lstsize(t_lst *lst);
-void push_front(t_lst ** head, t_data *val);
+void push_front(t_lst ** ptr_to_head, t_data *val);
 void push_end(t_lst *head, t_data *val);
-void display_lst(t_lst **first_node, char *name);
+void display_lst(t_lst **ptr_to_head, char *name);
+void sa(t_lst *a);
+
+
+t_lst	*ft_lstnew2(int nbr);
+void	add_front(t_lst **ptr_to_head, int x);
+void	add_back(t_lst **ptr_to_head, int x);
+t_lst *del_first(t_lst **head);
+void add_front2(t_lst **head, t_lst *node_to_add);
+void add_back2(t_lst **head, t_lst *node_to_add);
+void rotate(t_lst **head);
+void swap2(t_lst **head);
 
 # endif
