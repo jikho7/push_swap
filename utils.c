@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:04:16 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/13 16:55:26 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:41:00 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,53 @@ void bubble_sort(int *tab, int size)
 	}
 }
 
+int	ft_lstsize(t_lst *lst)
+{
+	int	nbr_element;
+
+	nbr_element = 0;
+	while (!lst)
+		return (0);
+	while (lst)
+	{
+		nbr_element++;
+		lst = lst->next;
+	}
+	return (nbr_element);
+}
+
+t_lst	*ft_lstlast(t_lst *lst)
+{
+	if (lst != NULL)
+	{
+		while (lst->next)
+			lst = lst->next;
+		return (lst);
+	}
+	else
+		return (lst);
+}
+
+void	ft_lstclear(t_lst **lst)
+{
+	t_lst	*temp;
+
+	if (lst)
+	{
+		while (*lst)
+		{
+			temp = (*lst)->next;
+			ft_lstdelone(*lst);
+			(*lst) = temp;
+		}
+	}
+	else
+		*lst = NULL;
+}
+
+void	ft_lstdelone(t_lst *lst)
+{
+	lst->next = NULL;
+	lst->back = NULL;
+	free (lst);
+}

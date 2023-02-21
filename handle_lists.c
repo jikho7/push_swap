@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:36:18 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/21 17:59:07 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:29:35 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,6 @@ void push_front(t_lst ** ptr_to_head, t_data *val)		// el ajouter entre head et 
     *ptr_to_head = new_node;			// head pointe sur new_el
 }
 
-void swap2(t_lst **head)
-{
-	t_lst *first_node;
-	t_lst *second_node;
-
-	first_node = del_first(head);
-	second_node = del_first(head);
-
-	add_front2(head, first_node);
-	add_front2(head, second_node);
-}
 
 void add_front2(t_lst **head, t_lst *node_to_add)
 {
@@ -89,16 +78,6 @@ int main(int ac, char **av)
 }
 */
 
-
-
-
-void rotate(t_lst **head)
-{
-	t_lst *to_rotate;
-
-	to_rotate = del_first(head);
-	add_back2(head, to_rotate);
-}
 
 void add_back2(t_lst **head, t_lst *node_to_add)
 {

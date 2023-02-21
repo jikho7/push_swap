@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:11:11 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/21 17:36:11 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:18:31 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,23 @@ la pile a. Le dernier élément devient le premier.
 rrb (reverse rotate b) : Décale d’une position vers le bas tous les élements de
 la pile b. Le dernier élément devient le premier.
 rrr : rra et rrb en même temps.*/
+
+void rotate(t_lst **head)
+{
+	t_lst *to_rotate;
+
+	to_rotate = del_first(head);
+	add_back2(head, to_rotate);
+}
+
+void swap2(t_lst **head)
+{
+	t_lst *first_node;
+	t_lst *second_node;
+
+	first_node = del_first(head);
+	second_node = del_first(head);
+
+	add_front2(head, first_node);
+	add_front2(head, second_node);
+}
