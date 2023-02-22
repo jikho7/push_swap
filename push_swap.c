@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/21 23:46:44 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:20:49 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int main ()
 	}
 
 	display_lst(&lst, "name");
-	//swap2(&lst);
+	swap2(&lst);
 	printf("\n");
-	//display_lst(&lst, "name");
+	display_lst(&lst, "name");
 
 	bubble_sort(tab_test, 7);
 	j = 0;
@@ -90,13 +90,15 @@ int main ()
 		while(tmp->next)
 		{
 			while(tmp->nbr != tab_test[j])
-			{
 				j++;
-			}
 			tmp->idx = j;
 			tmp = tmp->next;
 			j = 0;
 		}
+			while(tmp->nbr != tab_test[j])
+				j++;
+			tmp->idx = j;
+			tmp = tmp->next;
 	}
 display_lst(&lst, "name");
 }
