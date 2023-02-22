@@ -6,102 +6,83 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/22 11:20:49 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:12:57 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
-/*
-int main (int ac, char	**av)
+
+void indexation(t_lst **lst, int *tab);
+int *create_tab(t_lst **lst, int size);
+
+int main (int ac, char **av)
 {
-	int c = 0;
-	char name[] = "liste A";
-	t_lst *element;
-	t_lst *head;
-
-	t_data data = {1, 0, 0, 0, NULL, &av[data.i]};
-	data.tab = malloc(sizeof(int) * ac);
-	data.i = 1;
-	while (av[data.i])
-	{
-		data.tab[data.j] = atoi(av[data.i++]);
-		data.size++;
-		//printf("CONVERSION:%d\n", data.tab[data.j]);
-		data.j++;
-	}
-	data.j = 0;
-	bubble_sort(data.tab, data.size);
-	//while (data.j < data.size)
-	// 	printf("SORTED:%d\n", data.tab[data.j++]);
-	data.j = 0;
-
-	element = ft_lstnew(&data);
-	printf("first node:\n");
-	display_node(element);
-	head = element;
-	//printf("first node copy:\n");
-	//display_node(head);
-
-	while(c < ac - 2)
-	{
-		push_end(element, &data);
-		display_node(element->next);
-		data.j++;
-		element = element->next;
-		c++;
-	}
-	display_lst(&head, name);
-}
-*/
-
-int main ()
-{
-	int j;
-	int tab_test[7] = {42,-98,47,21,6578,214748,0};
-
-	t_lst *lst;
-	lst = ft_lstnew(tab_test[0]);
+	int *tab;
+	int i;
 	t_lst *tmp;
+	t_lst *lst;
 
-	int i = 1;
-	while (i < 7)
+	lst = ft_lstnew(atoi(av[1]));
+	i = 2;
+	while (i < ac)
 	{
-		tmp = ft_lstnew(tab_test[i]);
+		tmp = ft_lstnew(atoi(av[i]));
 		add_front2(&lst, tmp);
 		i++;
 	}
+	display_lst(&lst, "LIST CREATED");
+	tab = create_tab(&lst, ac);
 
-	display_lst(&lst, "name");
-	swap2(&lst);
+	//swap2(&lst);
 	printf("\n");
-	display_lst(&lst, "name");
+	//display_lst(&lst, "swaped");
+	bubble_sort(tab, ac - 1);
+	indexation(&lst, tab);
+	display_lst(&lst, "FIN");
+}
 
-	bubble_sort(tab_test, 7);
-	j = 0;
-	while(j < 7)
+int *create_tab(t_lst **lst, int size)
+{
+	t_lst *tmp;
+	int *tab;
+	int i;
+
+	i = 0;
+	tab = malloc(sizeof(int) * size - 1);
+	tmp = *lst;
+	while (i < size - 1)
 	{
-		printf("%d\n", tab_test[j]);
-		j++;
+		tab[i] = tmp->nbr;
+		tmp = tmp->next;
+		i++;
 	}
+	return(tab);
+}
+
+
+void indexation(t_lst **lst, int *tab)
+{
+	int j;
+	t_lst *tmp = *lst;
+
 	j = 0;
-	tmp = lst;
 	if (tmp != NULL)
 	{
 		while(tmp->next)
 		{
-			while(tmp->nbr != tab_test[j])
+			while(tmp->nbr != tab[j])
 				j++;
 			tmp->idx = j;
 			tmp = tmp->next;
 			j = 0;
 		}
-			while(tmp->nbr != tab_test[j])
+			while(tmp->nbr != tab[j])
 				j++;
 			tmp->idx = j;
 			tmp = tmp->next;
 	}
-display_lst(&lst, "name");
 }
+
 
 void display_node(t_lst *lst)
 {
