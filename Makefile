@@ -6,7 +6,7 @@
 #    By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:49:08 by jdefayes          #+#    #+#              #
-#    Updated: 2023/02/13 19:54:18 by jdefayes         ###   ########.fr        #
+#    Updated: 2023/02/22 18:10:21 by jdefayes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NAME	= push_swap
 
 ###################################
 ##SOURCES
-SRC		=	push_swap.c\
+SRC		=	main.c\
+			push_swap.c\
 			utils.c\
 			handle_lists.c\
 			handle_piles.c\

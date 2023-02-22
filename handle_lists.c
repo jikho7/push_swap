@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:36:18 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/21 22:29:35 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:09:53 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,12 @@ void push_front(t_lst ** ptr_to_head, t_data *val)		// el ajouter entre head et 
     *ptr_to_head = new_node;			// head pointe sur new_el
 }
 
-
 void add_front2(t_lst **head, t_lst *node_to_add)
 {
 	t_lst *first_node = *head;
 
 	node_to_add->next = first_node;	// node_to_add place devant first_node
 	*head = node_to_add;			// adresse de node_to add mise dans head. nouvelle tete
-
 }
 
 void push_end(t_lst *head, t_data *val)
@@ -46,38 +44,7 @@ void push_end(t_lst *head, t_data *val)
 	new_node->idx = val->j;
 	new_node->next = NULL;
 	new_node->back = current;
-    // current->next = (t_lst*) malloc(sizeof(t_lst)); 	// creation + malloc new node
-    // current->next->nbr = val->tab[val->j];
-	// current->next->idx = val->j;
-    // current->next->next = NULL;
-	// current->next->back = current;
 }
-
-/*
-int main(int ac, char **av)
-{
-	(void)ac;
-	t_lst *head;
-
-	head = ft_lstnew(atoi(av[1]));
-	add_front(&head, atoi(av[2]));
-	add_front(&head, atoi(av[3]));
-	add_front(&head, atoi(av[4]));
-
-	display_list(&head);
-	printf("\n");
-
-	//swap2(&head);
-
-	//display_node(head);
-	rotate(&head);
-	//printf("\n");
-	display_list(&head);
-	return (0);
-
-}
-*/
-
 
 void add_back2(t_lst **head, t_lst *node_to_add)
 {
@@ -90,8 +57,6 @@ void add_back2(t_lst **head, t_lst *node_to_add)
 	node_to_add->next = NULL;
 	current->next = node_to_add;
 }
-
-
 
 void add_front(t_lst **ptr_to_head, int x)	//	ptr pointe sur ptr adresse 820
 {

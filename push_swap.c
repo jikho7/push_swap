@@ -6,40 +6,17 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/22 14:12:57 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/22 18:11:20 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-void indexation(t_lst **lst, int *tab);
-int *create_tab(t_lst **lst, int size);
-
-int main (int ac, char **av)
+void push_swap()
 {
-	int *tab;
-	int i;
-	t_lst *tmp;
-	t_lst *lst;
 
-	lst = ft_lstnew(atoi(av[1]));
-	i = 2;
-	while (i < ac)
-	{
-		tmp = ft_lstnew(atoi(av[i]));
-		add_front2(&lst, tmp);
-		i++;
-	}
-	display_lst(&lst, "LIST CREATED");
-	tab = create_tab(&lst, ac);
-
-	//swap2(&lst);
-	printf("\n");
-	//display_lst(&lst, "swaped");
-	bubble_sort(tab, ac - 1);
-	indexation(&lst, tab);
-	display_lst(&lst, "FIN");
 }
+
 
 int *create_tab(t_lst **lst, int size)
 {
@@ -59,12 +36,11 @@ int *create_tab(t_lst **lst, int size)
 	return(tab);
 }
 
-
 void indexation(t_lst **lst, int *tab)
 {
 	int j;
-	t_lst *tmp = *lst;
 
+	t_lst *tmp = *lst;
 	j = 0;
 	if (tmp != NULL)
 	{
@@ -82,7 +58,6 @@ void indexation(t_lst **lst, int *tab)
 			tmp = tmp->next;
 	}
 }
-
 
 void display_node(t_lst *lst)
 {
@@ -103,12 +78,8 @@ t_lst	*ft_lstnew(int nbr)
 	new_element = ft_calloc(1, (sizeof(t_lst)));
 	if (new_element == NULL)
 		return (NULL);
-
 	(*new_element).nbr = nbr;
 	new_element->next = NULL;
-	//new_element->back = NULL;
-	//new_element->idx = 0;
-
 	return (new_element);
 }
 
