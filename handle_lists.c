@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:36:18 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/22 18:09:53 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:02:53 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void push_front(t_lst ** ptr_to_head, t_data *val)		// el ajouter entre head et 
     *ptr_to_head = new_node;			// head pointe sur new_el
 }
 
-void add_front2(t_lst **head, t_lst *node_to_add)
+void add_front2(t_lst **head, t_lst *node_to_add)	// adresse head -> 0x860, adresse node_add -> 0x880
 {
-	t_lst *first_node = *head;
+	t_lst *first_node = *head;	// first_node contient adresse head = 0x860
 
-	node_to_add->next = first_node;	// node_to_add place devant first_node
-	*head = node_to_add;			// adresse de node_to add mise dans head. nouvelle tete
+	node_to_add->next = first_node;	// node_to_add place devant first_node	|| node_add next pointe sur adresse first, 0x860
+	*head = node_to_add;			// adresse de node_to add mise dans head. nouvelle tete	|| ptr sur head contient adresse node_add, 0x880
 }
 
 void push_end(t_lst *head, t_data *val)

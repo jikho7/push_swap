@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/22 18:20:25 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:54:30 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,25 @@ typedef struct s_data
 	char	**av;
 }t_data;
 
-
+void push_swap(t_lst **stack_a, t_lst **stack_b, int ac);
+void halving (t_lst **stack_a, t_lst **stack_b, int ac);
+int rotate(t_lst **stack_a, t_lst **stack_b);
+int swap(t_lst **stack_a, t_lst **stack_b);
 int *create_tab(t_lst **lst, int size);
 void indexation(t_lst **lst, int *tab);
 void display_node(t_lst *lst);
 t_lst	*ft_lstnew(int nbr);
+t_lst	*ft_lstnew_b();
 void display_lst(t_lst **ptr_to_head, char *name);
 
-void rotate(t_lst **head);
 void sa(t_lst **head);
 void sb(t_lst **head);
+void ss(t_lst **stack_a, t_lst **stack_b);
+void pa(t_lst **stack_a, t_lst **stack_b);
 void pb(t_lst **stack_a, t_lst **stack_b);
+void ra(t_lst **head);
+void rb(t_lst **head);
+void rr(t_lst **stack_a, t_lst **stack_b);
 
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
