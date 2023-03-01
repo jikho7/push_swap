@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/27 18:54:30 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:21:30 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_data
 	char	**av;
 }t_data;
 
-void push_swap(t_lst **stack_a, t_lst **stack_b, int ac);
-void halving (t_lst **stack_a, t_lst **stack_b, int ac);
+t_lst *push_swap(t_lst **stack_a, t_lst **stack_b, int ac);
+void halving(t_lst **stack_a, t_lst **stack_b, int ac);
 int rotate(t_lst **stack_a, t_lst **stack_b);
 int swap(t_lst **stack_a, t_lst **stack_b);
 int *create_tab(t_lst **lst, int size);
@@ -54,6 +54,7 @@ void pb(t_lst **stack_a, t_lst **stack_b);
 void ra(t_lst **head);
 void rb(t_lst **head);
 void rr(t_lst **stack_a, t_lst **stack_b);
+void rra(t_lst **head);
 
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
@@ -70,5 +71,10 @@ void add_back2(t_lst **head, t_lst *node_to_add);
 void add_front(t_lst **ptr_to_head, int x);
 void add_back(t_lst **ptr_to_head, int x);
 t_lst	*del_first(t_lst **head);
+
+t_lst	*below_5_numbers(t_lst **stack_a, t_lst **stack_b, int ac);
+t_lst **two(t_lst **stack);
+t_lst *three(t_lst **stack);
+t_lst *four(t_lst **stack_a, t_lst **stack_b);
 
 # endif

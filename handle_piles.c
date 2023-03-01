@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:11:11 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/27 16:25:36 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:51:36 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,12 @@ void sa(t_lst **head)
 			second_node = del_first(head);
 			add_front2(head, first_node);
 			add_front2(head, second_node);
-			printf("After swap, stack A:\n");
-			printf("First element: %d\nSecond element: %d\n", second_node->nbr, first_node->nbr);
+			//printf("After swap, stack A:\n");
+			//printf("First element: %d\nSecond element: %d\n", second_node->nbr, first_node->nbr);
 		}
 		else
 			printf("No swap\n");
+		printf("SA\n");
 }
 
 void sb(t_lst **head)
@@ -70,11 +71,12 @@ void sb(t_lst **head)
 			second_node = del_first(head);
 			add_front2(head, first_node);
 			add_front2(head, second_node);
-			printf("After swap, stack B:\n");
-			printf("First element: %d\nSecond element: %d\n", second_node->nbr, first_node->nbr);
+		//	printf("After swap, stack B:\n");
+		//	printf("First element: %d\nSecond element: %d\n", second_node->nbr, first_node->nbr);
 		}
 		else
 			printf("No swap\n");
+		printf("SB\n");
 }
 
 void pb(t_lst **stack_a, t_lst **stack_b)
@@ -90,6 +92,7 @@ void pb(t_lst **stack_a, t_lst **stack_b)
 	}
 	else
 		printf("no push B\n");
+	printf("PB\n");
 }
 
 void pa(t_lst **stack_a, t_lst **stack_b)
@@ -105,6 +108,7 @@ void pa(t_lst **stack_a, t_lst **stack_b)
 	}
 	else
 		printf("no push A\n");
+	printf("PA\n");
 }
 
 void ra(t_lst **head)
@@ -120,6 +124,7 @@ void ra(t_lst **head)
 	}
 	else
 		printf("no rotate A\n");
+	printf("RA\n");
 }
 
 
@@ -136,6 +141,7 @@ void rb(t_lst **head)
 	}
 	else
 		printf("no rotate B\n");
+	printf("RB\n");
 }
 
 void rr(t_lst **stack_a, t_lst **stack_b)
@@ -148,6 +154,7 @@ void rr(t_lst **stack_a, t_lst **stack_b)
 	tmp = *stack_b;
 	if (tmp != NULL && tmp->next != NULL)
 		rb(stack_b);
+	printf("RR\n");
 }
 
 void ss(t_lst **stack_a, t_lst **stack_b)
@@ -160,4 +167,30 @@ void ss(t_lst **stack_a, t_lst **stack_b)
 	tmp = *stack_b;
 	if (tmp != NULL && tmp->next != NULL)
 		sb(stack_b);
+	printf("SS\n");
+}
+
+void rra(t_lst **head)
+{
+	t_lst *tmp;
+	t_lst *to_add;
+	int size;
+
+	tmp = *head;
+	size = ft_lstsize(*head);
+	while(tmp->next)
+	{
+		tmp = tmp->next;
+	}
+	to_add = tmp;
+	to_add->next = *head;
+	tmp = to_add;
+	add_front2(head, to_add);
+	while (size > 1)
+	{
+		tmp = tmp->next;
+		size--;
+	}
+	tmp->next = NULL;
+	printf("RRA\n");
 }

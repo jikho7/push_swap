@@ -6,7 +6,7 @@
 #    By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:49:08 by jdefayes          #+#    #+#              #
-#    Updated: 2023/02/22 18:10:21 by jdefayes         ###   ########.fr        #
+#    Updated: 2023/03/01 11:51:28 by jdefayes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC		=	main.c\
 			utils.c\
 			handle_lists.c\
 			handle_piles.c\
+			below_5_numbers.c\
 
 OBJ		= ${SRC:.c=.o}
 FLAGS	= -Wall -Werror -Wextra -g

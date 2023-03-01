@@ -6,31 +6,37 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/02/27 19:04:33 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:51:14 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-void push_swap(t_lst **stack_a, t_lst **stack_b, int ac)
+t_lst *push_swap(t_lst **stack_a, t_lst **stack_b, int ac)
 {
 	int ro;
 	int sw;
 
 	sw = 1;
 	ro = 1;
-	printf("entry\n");
+	//printf("entry push_swap function\n");
+	if (ac < 7)
+	{
+		below_5_numbers(stack_a, stack_b, ac);
+		//printf("Below 5 done\n");
+		return (*stack_a);
+	}
 	halving(stack_a, stack_b, ac);
 	while (ro == 1 || sw == 1)
 	{
 		ro = rotate(stack_a, stack_b);
 		sw = swap(stack_a, stack_b);
-		printf("push_swap\n");
+		//printf("push_swap\n");
 	}
-
+	return(*stack_a);
 }
 
-void halving (t_lst **stack_a, t_lst **stack_b, int ac)
+void halving(t_lst **stack_a, t_lst **stack_b, int ac)
 {
 	t_lst *tmp_a;
 	int size;
@@ -41,7 +47,7 @@ void halving (t_lst **stack_a, t_lst **stack_b, int ac)
 	i = 1;
 	multi = 10;
 	size = ac / 2;
-	printf("size: %d\n", size);
+	//printf("size: %d\n", size);
 	while(i < (ac / 2))
 	{
 		while(tmp_a != NULL)
