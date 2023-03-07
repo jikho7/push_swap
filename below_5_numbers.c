@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:22:36 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/07 19:59:13 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:51:38 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_lst *below_5_numbers(t_lst **stack_a, t_lst **stack_b, int ac)
 		three(stack_a);
 	if (ac == 5)
 		four(stack_a, stack_b);
-//	if (ac == 6)
-//		five(stack_a, stack_b);
+	if (ac == 6)
+		five(stack_a, stack_b);
 	ft_lstclear(stack_b);
 	return(*stack_a);
 }
@@ -46,20 +46,22 @@ t_lst *three(t_lst **stack)
 	t_lst *lst;
 
 	lst = *stack;
-	if (lst->idx < lst->next->idx && lst->idx < lst->next->next->idx)
-		return (ra(stack));
+	if (lst->idx > lst->next->idx && lst->next->idx > lst->next->next->idx)
+		return (*stack);
+	if (lst->idx > lst->next->idx && lst->idx < lst->next->next->idx)
+		return (rra(stack));
 	else if (lst->idx < lst->next->idx && lst->idx > lst->next->next->idx)
 		return (sa(stack));
 	while (lst->idx < lst->next->idx || lst->next->idx < lst->next->next->idx)
 	{
 		if (lst->idx < lst->next->idx && lst->next->idx < lst->next->next->idx)
 		{
-			rra(stack);
+			ra(stack);
 			lst = *stack;
 			sa(stack);
 		}
 		else if (lst->idx < lst->next->idx)
-			rra(stack);
+			ra(stack);
 		else if (lst->idx > lst->next->idx)
 			sa(stack);
 		lst = *stack;
@@ -70,15 +72,19 @@ t_lst *three(t_lst **stack)
 t_lst *four(t_lst **stack_a, t_lst **stack_b)
 {
 	t_lst *tmp;
+	int check;
 
 	tmp = *stack_a;
-	if (tmp->idx < tmp->next->idx && tmp->idx < tmp->next->next->idx
-		&& tmp->idx < tmp->next->next->next->idx) // si + petit = head
+	check = in_order(stack_a);
+	if (check == 1)
+		return (*stack_a);
+	if (tmp->idx > tmp->next->idx && tmp->idx > tmp->next->next->idx
+		&& tmp->idx > tmp->next->next->next->idx) // si + petit = head
 		{
 			pb(stack_a, stack_b);
 		}
-	else if (tmp->next->next->next->idx < tmp->idx && tmp->next->next->next->idx < tmp->next->idx
-			&& tmp->next->next->next->idx < tmp->next->next->idx)	// si + petit dernier
+	else if (tmp->next->next->next->idx > tmp->next->next->idx && tmp->next->next->next->idx > tmp->next->idx
+			&&tmp->next->next->next->idx > tmp->idx)	// si + petit dernier
 		{
 			rra(stack_a);
 			pb(stack_a, stack_b);
@@ -88,15 +94,15 @@ t_lst *four(t_lst **stack_a, t_lst **stack_b)
 		while (1)
 		{
 			tmp = ra(stack_a);
-			if (tmp->idx < tmp->next->idx && tmp->idx < tmp->next->next->idx
-				&& tmp->idx < tmp->next->next->next->idx)	// si + petit = head
+			if (tmp->idx > tmp->next->idx && tmp->idx > tmp->next->next->idx
+				&& tmp->idx > tmp->next->next->next->idx)	// si + petit = head
 			{
 				pb(stack_a, stack_b);
 				break;
 			}
 			tmp = sa(stack_a);
-			if (tmp->idx < tmp->next->idx && tmp->idx < tmp->next->next->idx
-				&& tmp->idx < tmp->next->next->next->idx)	// si + petit = head
+			if (tmp->idx > tmp->next->idx && tmp->idx > tmp->next->next->idx
+				&& tmp->idx > tmp->next->next->next->idx)	// si + petit = head
 			{
 				pb(stack_a, stack_b);
 				break;
@@ -107,7 +113,19 @@ t_lst *four(t_lst **stack_a, t_lst **stack_b)
 	pa(stack_a, stack_b);
 return(*stack_a);
 }
-/*
+
+
+int in_order(t_lst **stack)
+{
+	t_lst *tmp;
+
+	tmp = *stack;
+	if (tmp->idx > tmp->next->idx && tmp->next->idx > tmp->next->next->idx
+		&& tmp->next->next->idx > tmp->next->next->next->idx)
+		return (1);
+	return (0);
+}
+
 t_lst *sort_five(t_lst **stack_a, t_lst **stack_b)
 {
 	t_lst *t;
@@ -139,7 +157,7 @@ t_lst *sort_five(t_lst **stack_a, t_lst **stack_b)
 			ra(stack_a);
 			ra(stack_a);
 		}
-
-	}
+	return (*stack_a);
 }
-*/
+
+
