@@ -6,13 +6,11 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:11:11 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/01 15:51:36 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:18:30 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
-
-void pb(t_lst **stack_a, t_lst **stack_b);
 
 /*
 sa (swap a) : Intervertit les 2 premiers éléments au sommet de la pile a.
@@ -37,49 +35,46 @@ la pile b. Le dernier élément devient le premier.
 rrr : rra et rrb en même temps.*/
 
 
-void sa(t_lst **head)
+t_lst *sa(t_lst **head)
+{
+	t_lst *tmp;
+	t_lst *first_node;
+	t_lst *second_node;
+	tmp = *head;
+	if(tmp->next != NULL)
+	{
+		first_node = del_first(head);
+		second_node = del_first(head);
+		add_front2(head, first_node);
+		add_front2(head, second_node);
+	}
+	//else
+	//	printf("");
+	write(1, "sa\n", 3);
+	return (*head);
+}
+
+t_lst *sb(t_lst **head)
 {
 	t_lst *tmp;
 	t_lst *first_node;
 	t_lst *second_node;
 
 	tmp = *head;
-		if(tmp->next != NULL)
-		{
-			first_node = del_first(head);
-			second_node = del_first(head);
-			add_front2(head, first_node);
-			add_front2(head, second_node);
-			//printf("After swap, stack A:\n");
-			//printf("First element: %d\nSecond element: %d\n", second_node->nbr, first_node->nbr);
-		}
-		else
-			printf("No swap\n");
-		printf("SA\n");
+	if(tmp != NULL && tmp->next != NULL)	// segementation fault with if(tmp->next != NULL && tmp != NULL)
+	{
+		first_node = del_first(head);
+		second_node = del_first(head);
+		add_front2(head, first_node);
+		add_front2(head, second_node);
+	}
+//	else
+//		printf("");
+	write(1, "sb\n", 3);
+	return (*head);
 }
 
-void sb(t_lst **head)
-{
-	t_lst *tmp;
-	t_lst *first_node;
-	t_lst *second_node;
-
-	tmp = *head;
-		if(tmp != NULL && tmp->next != NULL)	// segementation fault with if(tmp->next != NULL && tmp != NULL)
-		{
-			first_node = del_first(head);
-			second_node = del_first(head);
-			add_front2(head, first_node);
-			add_front2(head, second_node);
-		//	printf("After swap, stack B:\n");
-		//	printf("First element: %d\nSecond element: %d\n", second_node->nbr, first_node->nbr);
-		}
-		else
-			printf("No swap\n");
-		printf("SB\n");
-}
-
-void pb(t_lst **stack_a, t_lst **stack_b)
+int pb(t_lst **stack_a, t_lst **stack_b)
 {
 	t_lst *to_move;
 	t_lst *tmp;
@@ -91,8 +86,9 @@ void pb(t_lst **stack_a, t_lst **stack_b)
 		add_front2(stack_b, to_move);
 	}
 	else
-		printf("no push B\n");
-	printf("PB\n");
+		printf("");
+	write(1, "pb\n", 3);
+	return (0);
 }
 
 void pa(t_lst **stack_a, t_lst **stack_b)
@@ -107,11 +103,11 @@ void pa(t_lst **stack_a, t_lst **stack_b)
 		add_front2(stack_a, to_move);
 	}
 	else
-		printf("no push A\n");
-	printf("PA\n");
+		printf("");
+	write(1, "pa\n", 3);
 }
 
-void ra(t_lst **head)
+t_lst *rra(t_lst **head)
 {
 	t_lst *to_move;
 	t_lst *tmp;
@@ -122,13 +118,13 @@ void ra(t_lst **head)
 		to_move = del_first(head);
 		add_back2(head, to_move);
 	}
-	else
-		printf("no rotate A\n");
-	printf("RA\n");
+	//else
+	//	printf("");
+	write(1, "rra\n", 4);
+	return (*head);
 }
 
-
-void rb(t_lst **head)
+t_lst *rb(t_lst **head)
 {
 	t_lst *to_move;
 	t_lst *tmp;
@@ -140,8 +136,9 @@ void rb(t_lst **head)
 		add_back2(head, to_move);
 	}
 	else
-		printf("no rotate B\n");
-	printf("RB\n");
+		printf("");
+	write(1, "rb\n", 3);
+	return (*head);
 }
 
 void rr(t_lst **stack_a, t_lst **stack_b)
@@ -154,7 +151,7 @@ void rr(t_lst **stack_a, t_lst **stack_b)
 	tmp = *stack_b;
 	if (tmp != NULL && tmp->next != NULL)
 		rb(stack_b);
-	printf("RR\n");
+	write(1, "rr\n", 3);
 }
 
 void ss(t_lst **stack_a, t_lst **stack_b)
@@ -167,10 +164,10 @@ void ss(t_lst **stack_a, t_lst **stack_b)
 	tmp = *stack_b;
 	if (tmp != NULL && tmp->next != NULL)
 		sb(stack_b);
-	printf("SS\n");
+	write(1, "ss\n", 3);
 }
 
-void rra(t_lst **head)
+t_lst *ra(t_lst **head)
 {
 	t_lst *tmp;
 	t_lst *to_add;
@@ -192,5 +189,6 @@ void rra(t_lst **head)
 		size--;
 	}
 	tmp->next = NULL;
-	printf("RRA\n");
+	write(1, "ra\n", 3);
+	return (*head);
 }

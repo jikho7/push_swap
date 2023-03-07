@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:22:36 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/07 17:06:17 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:59:13 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,21 @@ t_lst *below_5_numbers(t_lst **stack_a, t_lst **stack_b, int ac)
 		three(stack_a);
 	if (ac == 5)
 		four(stack_a, stack_b);
-	// if (ac == 6)
-	// 	five();
+//	if (ac == 6)
+//		five(stack_a, stack_b);
 	ft_lstclear(stack_b);
 	return(*stack_a);
+}
+
+t_lst **two(t_lst **stack)
+{
+	t_lst *lst;
+	lst = *stack;
+	if (lst->idx < lst->next->idx)
+	{
+		sa(stack);
+	}
+	return (stack);
 }
 
 t_lst *three(t_lst **stack)
@@ -35,140 +46,100 @@ t_lst *three(t_lst **stack)
 	t_lst *lst;
 
 	lst = *stack;
-	if (lst->idx < lst->next->idx && lst->idx > lst->next->next->idx)
+	if (lst->idx < lst->next->idx && lst->idx < lst->next->next->idx)
+		return (ra(stack));
+	else if (lst->idx < lst->next->idx && lst->idx > lst->next->next->idx)
+		return (sa(stack));
+	while (lst->idx < lst->next->idx || lst->next->idx < lst->next->next->idx)
 	{
-		rra(stack);
-		lst = *stack;
-	}
-	else if (lst->idx > lst->next->idx && lst->idx < lst->next->next->idx)
-	{
-		sa(stack);
-		lst = *stack;
-	}
-	while (lst->idx > lst->next->idx || lst->next->idx > lst->next->next->idx)
-	{
-		if (lst->idx > lst->next->idx && lst->next->idx > lst->next->next->idx)
+		if (lst->idx < lst->next->idx && lst->next->idx < lst->next->next->idx)
 		{
-			ra(stack);
+			rra(stack);
 			lst = *stack;
 			sa(stack);
 		}
-		else if (lst->idx > lst->next->idx)
-			ra(stack);
 		else if (lst->idx < lst->next->idx)
+			rra(stack);
+		else if (lst->idx > lst->next->idx)
 			sa(stack);
 		lst = *stack;
 	}
-	//lst = *stack;
 	return(*stack);
-}
-
-t_lst **two(t_lst **stack)
-{
-	t_lst *lst;
-	lst = *stack;
-	if (lst->idx > lst->next->idx)
-	{
-		sa(stack);
-	}
-	return (stack);
 }
 
 t_lst *four(t_lst **stack_a, t_lst **stack_b)
 {
 	t_lst *tmp;
-	t_lst *l_b;
 
 	tmp = *stack_a;
-	l_b = *stack_b;
 	if (tmp->idx < tmp->next->idx && tmp->idx < tmp->next->next->idx
-		&& tmp->idx < tmp->next->next->next->idx)
+		&& tmp->idx < tmp->next->next->next->idx) // si + petit = head
 		{
-			// si + petit = head
 			pb(stack_a, stack_b);
-		//	tmp = *stack_a;
-		//	l_b = *stack_b;
 		}
 	else if (tmp->next->next->next->idx < tmp->idx && tmp->next->next->next->idx < tmp->next->idx
-			&& tmp->next->next->next->idx < tmp->next->next->idx)
+			&& tmp->next->next->next->idx < tmp->next->next->idx)	// si + petit dernier
 		{
-			// si + petit dernier
 			rra(stack_a);
-			tmp = *stack_a;
 			pb(stack_a, stack_b);
-		//	tmp = *stack_a;
-		//	l_b = *stack_b;
 		}
 	else
 	{
 		while (1)
 		{
-
-			ra(stack_a);
-			tmp = *stack_a;
-
+			tmp = ra(stack_a);
 			if (tmp->idx < tmp->next->idx && tmp->idx < tmp->next->next->idx
-				&& tmp->idx < tmp->next->next->next->idx)
+				&& tmp->idx < tmp->next->next->next->idx)	// si + petit = head
 			{
-				// si + petit = head
 				pb(stack_a, stack_b);
-			//	tmp = *stack_a;
-			//	l_b = *stack_b;
 				break;
 			}
-			sa(stack_a);
-			tmp = *stack_a;
-
+			tmp = sa(stack_a);
 			if (tmp->idx < tmp->next->idx && tmp->idx < tmp->next->next->idx
-				&& tmp->idx < tmp->next->next->next->idx)
+				&& tmp->idx < tmp->next->next->next->idx)	// si + petit = head
 			{
-				// si + petit = head
 				pb(stack_a, stack_b);
-				//l_b = *stack_b;
-				//tmp = *stack_a;
 				break;
 			}
 		}
 	}
-	tmp = *stack_a;
-	l_b = *stack_b;
 	three(stack_a);
 	pa(stack_a, stack_b);
 return(*stack_a);
 }
-
-// pronleme avec entree 2143, nb 3412
 /*
-	else if (tmp->idx > tmp->next->idx)
+t_lst *sort_five(t_lst **stack_a, t_lst **stack_b)
+{
+	t_lst *t;
+
+	t = *stack_a;
+	if (t->idx < t->next->idx && t->idx < t->next->next->idx &&
+		t->idx < t->next->next->next->idx && t->idx < t->next->next->next->next->idx) // si + petit = head
 		{
-		//	printf("LAST IF\n");
+			pb(stack_a, stack_b);
+		}
+	else if (t->next->next->next->next->idx < t->next->idx &&
+		t->next->next->next->next->idx < t->next->next->idx &&
+		t->next->next->next->next->idx < t->next->next->next->idx)	// si + petit = tail
+			{
+				rra(stack_a);
+				pb(stack_a, stack_b);
+			}
+	else if ((t->next->next->next->idx < t->idx &&
+		t->next->next->next->idx < t->next->idx &&
+		t->next->next->next->idx < t->next->next->idx && t->next->next->next->idx < t->next->next->next->next->idx))	// si + petit avant dernier
+	{
+		rra(stack_a);
+		rra(stack_a);
+	}
+	else if ((t->next->next->idx < t->idx &&
+		t->next->next->idx < t->next->idx &&
+		t->next->next->idx < t->next->next->next->idx && t->next->next->idx < t->next->next->next->next->idx))
+		{
 			ra(stack_a);
-			tmp = *stack_a;
-			if (tmp->idx > tmp->next->idx)
-			{
-				sa(stack_a);
-		//		printf("AFETR SA\n");
-			}
-		//	display_lst(stack_a, "STACK A");
-		//	display_lst(stack_b, "STACK B");
-			tmp = *stack_a;
-			if (tmp->idx < tmp->next->idx && tmp->idx < tmp->next->next->idx && tmp->idx < tmp->next->next->next->idx)
-			{
-			//	printf("SA LAST\n");
-				sa(stack_a);
-			}
+			ra(stack_a);
 		}
 
-
-		tmp = *stack_a;
-		three(stack_a);
-	pa(stack_a, stack_b);
-	return(*stack_a);
+	}
 }
 */
-
-// probleme avec 4321, 2143, 2431,
-// t_lst *five()
-// {
-
-// }

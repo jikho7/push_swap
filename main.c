@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 18:09:20 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/01 15:49:04 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:24:34 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,41 +26,21 @@ int main (int ac, char **av)
 		while (i < ac)
 		{
 			tmp = ft_lstnew(atoi(av[i]));
-			add_front2(&stack_a, tmp);
+			add_back2(&stack_a, tmp);
 			i++;
 		}
-		//display_lst(&stack_a, "LIST CREATED");
 		tab = create_tab(&stack_a, ac);
-
-
 		bubble_sort(tab, ac - 1);
 		indexation(&stack_a, tab);
-		//printf("Before sorting\n");
+		//display_lst(&stack_a, "STACK A");
+		//sa(&stack_a);
+		//printf("After SA");
 		//display_lst(&stack_a, "STACK A");
 		//display_lst(&stack_b, "STACK B");
-		/*
-		pb(&stack_a, &stack_b);
-		pb(&stack_a, &stack_b);
-		printf("After pb");
-		display_lst(&stack_a, "STACK A");
-		display_lst(&stack_b, "STACK B");
-
-		//ss(&stack_a, &stack_b);
-
-		rb(&stack_b);
-		printf("After RB");
-		display_lst(&stack_a, "STACK A");
-		display_lst(&stack_b, "STACK B");
-*/
-		//rra(&stack_a);
-		//printf("After RRA");
-		//display_lst(&stack_a, "STACK A");
-		//display_lst(&stack_b, "STACK B");
-
 		push_swap(&stack_a, &stack_b, ac);
-		//printf("After sorting\n");
-		display_lst(&stack_a, "STACK A");
-		display_lst(&stack_b, "STACK B");
+
+		//display_lst(&stack_a, "STACK A");
+		//display_lst(&stack_b, "STACK B");
 	}
 	else
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/01 15:51:14 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:33:26 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ int *create_tab(t_lst **lst, int size)
 	return(tab);
 }
 
+
 void indexation(t_lst **lst, int *tab)
 {
 	int j;
@@ -199,6 +200,11 @@ void display_lst(t_lst **ptr_to_head, char *name)
 {
 	t_lst *current_node;
 	int count;
+	current_node = *ptr_to_head;
+
+
+
+
 	current_node = *ptr_to_head;
 	count = 0;
 	printf("\n%s :\n", name);
