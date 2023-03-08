@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:22:36 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/08 11:37:06 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:37:31 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,10 @@ t_lst *four(t_lst **stack_a, t_lst **stack_b)
 	exception = exceptions(stack_a);
 	if (exception == 1)
 		return (*stack_a);
-	if (exception == 2) // si + petit = head
-		{
-			pb(stack_a, stack_b);
-		}
+	else if (exception == 2) // si + petit = head
+			printf("");
 	else if (exception == 3)	// si + petit dernier
-		{
 			rra(stack_a);
-			pb(stack_a, stack_b);
-		}
 	else
 	{
 		while (1)
@@ -95,19 +90,14 @@ t_lst *four(t_lst **stack_a, t_lst **stack_b)
 			tmp = ra(stack_a);
 			if (tmp->idx > tmp->next->idx && tmp->idx > tmp->next->next->idx
 				&& tmp->idx > tmp->next->next->next->idx)	// si + petit = head
-			{
-				pb(stack_a, stack_b);
 				break;
-			}
 			tmp = sa(stack_a);
 			if (tmp->idx > tmp->next->idx && tmp->idx > tmp->next->next->idx
 				&& tmp->idx > tmp->next->next->next->idx)	// si + petit = head
-			{
-				pb(stack_a, stack_b);
 				break;
-			}
 		}
 	}
+	pb(stack_a, stack_b);
 	three(stack_a);
 	pa(stack_a, stack_b);
 return(*stack_a);
@@ -233,6 +223,8 @@ int exceptions(t_lst **stack)
 				&&t->next->next->next->idx > t->idx)	// si + petit dernier
 				return (3);
 	}
+
+
 	if (size == 5)
 	{
 		if (check == 1)
@@ -247,3 +239,5 @@ int exceptions(t_lst **stack)
 
 	return (0);
 }
+
+int exception_4()
