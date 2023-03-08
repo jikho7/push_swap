@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:04:16 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/07 18:59:28 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:42:45 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_lstsize(t_lst *lst)
 	while (lst)
 	{
 		nbr_element++;
-		lst = lst->next;
+		lst = lst->nx;
 	}
 	return (nbr_element);
 }
@@ -82,8 +82,8 @@ t_lst	*ft_lstlast(t_lst *lst)
 {
 	if (lst != NULL)
 	{
-		while (lst->next)
-			lst = lst->next;
+		while (lst->nx)
+			lst = lst->nx;
 		return (lst);
 	}
 	else
@@ -98,7 +98,7 @@ void	ft_lstclear(t_lst **lst)
 	{
 		while (*lst)
 		{
-			temp = (*lst)->next;
+			temp = (*lst)->nx;
 			ft_lstdelone(*lst);
 			(*lst) = temp;
 		}
@@ -109,7 +109,7 @@ void	ft_lstclear(t_lst **lst)
 
 void	ft_lstdelone(t_lst *lst)
 {
-	lst->next = NULL;
+	lst->nx = NULL;
 	lst->back = NULL;
 	free (lst);
 }

@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/07 20:33:26 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:42:41 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void halving(t_lst **stack_a, t_lst **stack_b, int ac)
 				pb(stack_a, stack_b);
 				i++;
 			}
-			tmp_a = tmp_a->next;
+			tmp_a = tmp_a->nx;
 		}
 		multi = multi + 20;
 		tmp_a = *stack_a;
@@ -73,19 +73,19 @@ int rotate(t_lst **stack_a, t_lst **stack_b)
 	tmp_a = *stack_a;
 	tmp_b = *stack_b;
 
-	if (tmp_a->idx > tmp_a->next->idx && tmp_b->idx < tmp_b->next->idx)
+	if (tmp_a->idx > tmp_a->nx->idx && tmp_b->idx < tmp_b->nx->idx)
 	{
 		rr(stack_a, stack_b);
 		printf("RR\n");
 		return (1);
 	}
-	if (tmp_a->idx > tmp_a->next->idx && tmp_b->idx > tmp_b->next->idx)
+	if (tmp_a->idx > tmp_a->nx->idx && tmp_b->idx > tmp_b->nx->idx)
 	{
 		ra(stack_a);
 		printf("RA\n");
 		return (1);
 	}
-	if (tmp_a->idx < tmp_a->next->idx && tmp_b->idx < tmp_b->next->idx)
+	if (tmp_a->idx < tmp_a->nx->idx && tmp_b->idx < tmp_b->nx->idx)
 	{
 		rb(stack_b);
 		printf("RB\n");
@@ -102,17 +102,17 @@ int swap(t_lst **stack_a, t_lst **stack_b)
 	tmp_a = *stack_a;
 	tmp_b = *stack_b;
 
-	if (tmp_a->idx < tmp_a->next->idx && tmp_b->idx > tmp_b->next->idx)
+	if (tmp_a->idx < tmp_a->nx->idx && tmp_b->idx > tmp_b->nx->idx)
 	{
 		ss(stack_a, stack_b);
 		return (1);
 	}
-	if (tmp_a->idx < tmp_a->next->idx && tmp_b->idx < tmp_b->next->idx)
+	if (tmp_a->idx < tmp_a->nx->idx && tmp_b->idx < tmp_b->nx->idx)
 	{
 		sa(stack_a);
 		return(1);
 	}
-	if (tmp_a->idx > tmp_a->next->idx && tmp_b->idx > tmp_b->next->idx)
+	if (tmp_a->idx > tmp_a->nx->idx && tmp_b->idx > tmp_b->nx->idx)
 	{
 		sb(stack_b);
 		return(1);
@@ -132,7 +132,7 @@ int *create_tab(t_lst **lst, int size)
 	while (i < size - 1)
 	{
 		tab[i] = tmp->nbr;
-		tmp = tmp->next;
+		tmp = tmp->nx;
 		i++;
 	}
 	return(tab);
@@ -147,18 +147,18 @@ void indexation(t_lst **lst, int *tab)
 	j = 0;
 	if (tmp != NULL)
 	{
-		while(tmp->next)
+		while(tmp->nx)
 		{
 			while(tmp->nbr != tab[j])
 				j++;
 			tmp->idx = j;
-			tmp = tmp->next;
+			tmp = tmp->nx;
 			j = 0;
 		}
 			while(tmp->nbr != tab[j])
 				j++;
 			tmp->idx = j;
-			tmp = tmp->next;
+			tmp = tmp->nx;
 	}
 }
 
@@ -166,10 +166,10 @@ void display_node(t_lst *lst)
 {
 	if (lst != NULL)
 	{
-		printf("[%p] {value = %d | indice = %d | next = %p | back = %p}\n", lst,
+		printf("[%p] {value = %d | indice = %d | nx = %p | back = %p}\n", lst,
 			lst->nbr,
 			lst->idx,
-			lst->next,
+			lst->nx,
 			lst->back);
 	}
 }
@@ -182,7 +182,7 @@ t_lst	*ft_lstnew(int nbr)
 	if (new_element == NULL)
 		return (NULL);
 	(*new_element).nbr = nbr;
-	new_element->next = NULL;
+	new_element->nx = NULL;
 	return (new_element);
 }
 
@@ -193,7 +193,7 @@ t_lst	*ft_lstnew_b()
 	new_element = ft_calloc(1, (sizeof(t_lst)));
 	if (new_element == NULL)
 		return (NULL);
-	new_element->next = NULL;
+	new_element->nx = NULL;
 	return (new_element);
 }
 void display_lst(t_lst **ptr_to_head, char *name)
@@ -210,11 +210,11 @@ void display_lst(t_lst **ptr_to_head, char *name)
 	printf("\n%s :\n", name);
 	if (*ptr_to_head != NULL)
 	{
-		while (current_node->next != NULL)
+		while (current_node->nx != NULL)
 		{
 			printf("Index = %d : ", count);
 			display_node(current_node);
-			current_node = current_node->next;
+			current_node = current_node->nx;
 			count++;
 		}
 		printf("Index = %d : ", count);

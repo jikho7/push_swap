@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:11:11 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/07 21:18:30 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:42:39 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_lst *sa(t_lst **head)
 	t_lst *first_node;
 	t_lst *second_node;
 	tmp = *head;
-	if(tmp->next != NULL)
+	if(tmp->nx != NULL)
 	{
 		first_node = del_first(head);
 		second_node = del_first(head);
@@ -61,7 +61,7 @@ t_lst *sb(t_lst **head)
 	t_lst *second_node;
 
 	tmp = *head;
-	if(tmp != NULL && tmp->next != NULL)	// segementation fault with if(tmp->next != NULL && tmp != NULL)
+	if(tmp != NULL && tmp->nx != NULL)	// segementation fault with if(tmp->nx != NULL && tmp != NULL)
 	{
 		first_node = del_first(head);
 		second_node = del_first(head);
@@ -107,20 +107,20 @@ void pa(t_lst **stack_a, t_lst **stack_b)
 	write(1, "pa\n", 3);
 }
 
-t_lst *rra(t_lst **head)
+t_lst *ra(t_lst **head)
 {
 	t_lst *to_move;
 	t_lst *tmp;
 
 	tmp = *head;
-	if(tmp->next != NULL)
+	if(tmp->nx != NULL)
 	{
 		to_move = del_first(head);
 		add_back2(head, to_move);
 	}
 	//else
 	//	printf("");
-	write(1, "rra\n", 4);
+	write(1, "ra\n", 3);
 	return (*head);
 }
 
@@ -130,7 +130,7 @@ t_lst *rb(t_lst **head)
 	t_lst *tmp;
 
 	tmp = *head;
-	if (tmp != NULL && tmp->next != NULL)
+	if (tmp != NULL && tmp->nx != NULL)
 	{
 		to_move = del_first(head);
 		add_back2(head, to_move);
@@ -146,10 +146,10 @@ void rr(t_lst **stack_a, t_lst **stack_b)
 	t_lst *tmp;
 
 	tmp = *stack_a;
-	if (tmp != NULL && tmp->next != NULL)
+	if (tmp != NULL && tmp->nx != NULL)
 		ra(stack_a);
 	tmp = *stack_b;
-	if (tmp != NULL && tmp->next != NULL)
+	if (tmp != NULL && tmp->nx != NULL)
 		rb(stack_b);
 	write(1, "rr\n", 3);
 }
@@ -159,15 +159,15 @@ void ss(t_lst **stack_a, t_lst **stack_b)
 	t_lst *tmp;
 
 	tmp = *stack_a;
-	if (tmp != NULL && tmp->next != NULL)
+	if (tmp != NULL && tmp->nx != NULL)
 		sa(stack_a);
 	tmp = *stack_b;
-	if (tmp != NULL && tmp->next != NULL)
+	if (tmp != NULL && tmp->nx != NULL)
 		sb(stack_b);
 	write(1, "ss\n", 3);
 }
 
-t_lst *ra(t_lst **head)
+t_lst *rra(t_lst **head)
 {
 	t_lst *tmp;
 	t_lst *to_add;
@@ -175,20 +175,20 @@ t_lst *ra(t_lst **head)
 
 	tmp = *head;
 	size = ft_lstsize(*head);
-	while(tmp->next)
+	while(tmp->nx)
 	{
-		tmp = tmp->next;
+		tmp = tmp->nx;
 	}
 	to_add = tmp;
-	to_add->next = *head;
+	to_add->nx = *head;
 	tmp = to_add;
 	add_front2(head, to_add);
 	while (size > 1)
 	{
-		tmp = tmp->next;
+		tmp = tmp->nx;
 		size--;
 	}
-	tmp->next = NULL;
-	write(1, "ra\n", 3);
+	tmp->nx = NULL;
+	write(1, "rra\n", 4);
 	return (*head);
 }
