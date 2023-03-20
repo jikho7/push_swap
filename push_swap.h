@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/08 14:42:43 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/20 19:14:40 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ typedef struct s_lst
 	struct s_lst	*back;
 }t_lst;
 
+typedef struct s_a
+{
+	int *check;
+	t_lst **stack_a;
+	t_lst *tmp_a;
+}t_a;
+
+typedef struct s_b
+{
+	int *check;
+	t_lst **stack_b;
+	t_lst *tmp_b;
+}t_b;
+
 typedef struct s_data
 {
 	int		i;
@@ -37,8 +51,10 @@ typedef struct s_data
 
 t_lst *push_swap(t_lst **stack_a, t_lst **stack_b, int ac);
 void halving(t_lst **stack_a, t_lst **stack_b, int ac);
-int rotate(t_lst **stack_a, t_lst **stack_b);
-int swap(t_lst **stack_a, t_lst **stack_b);
+int set_multi(int size);
+int *check_order(t_lst **stack, char which_stack, int *check);
+int rotate(t_lst **stack_a, t_lst **stack_b, int total_size, int *check_a, int *check_b);
+int swap(t_lst **stack_a, t_lst **stack_b, int total_size, int *check_a, int *check_b);
 int *create_tab(t_lst **lst, int size);
 void indexation(t_lst **lst, int *tab);
 void display_node(t_lst *lst);
