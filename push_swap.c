@@ -6,81 +6,100 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/20 20:17:34 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:12:56 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
 void verify_halving(t_lst **stack_a, t_lst **stack_b, int ac);
+void finish(t_lst **stack_a, t_lst **stack_b);
+void radix(t_lst **stack_a, t_lst **stack_b);
+void sort_3(t_lst **stack_a, t_lst **stack_b);
+int swap_a(t_lst **stack_a, int *check_a);
+int rotate_a(t_lst **stack_a, int *check_a);
+void sort_a(t_lst **stack_a);
 
 t_lst *push_swap(t_lst **stack_a, t_lst **stack_b, int ac)
 {
-	//int ro;
-	//int sw;
 	int size;
-	t_lst *tmp_a;
-	t_lst *tmp_b;
-	int a = 3;
-	int b = 3;
-	int *check_a = &a;
-	int *check_b = &b;
-
-//	sw = 1;
-//	ro = 1;
+//	t_lst *tmp_a;
+//	t_lst *tmp_b;
+//	int a = 1;
+//	int b = 1;
+//	int *check_a = &a;
+//	int *check_b = &b;
 
 	size = ft_lstsize(*stack_a);
-	//printf("total_size: %d\n", size);
 	if (ac <= 6)
 	{
-	//	printf("below 5");
 		below_5_numbers(stack_a, stack_b, ac);
 		return (*stack_a);
 	}
 	else
 	{
+		radix(stack_a, stack_b);
+	//	display_lst(stack_a, "RADIX 1 step A");
+	//	display_lst(stack_b, "RADIX 1step B");
+	}
+	/*
+	else
+	{
 		halving(stack_a, stack_b, ac);
 		verify_halving(stack_a, stack_b, ac);
-		//display_lst(stack_a, "Halving A");
-		//display_lst(stack_b, "Halving B");
-		while (check_a != 0 && check_b != 0)
+	//	display_lst(stack_b, "Halving B");
+	//	display_lst(stack_a, "Halving A");
+
+		while (*check_a == 1 || *check_b == 1)
 		{
 			tmp_a = *stack_a;
 			tmp_b = *stack_b;
-			if (*check_a != 0 && *check_b != 0)
-			{
+			//printf("before check a; %d\n", *check_a);
+			//printf("brefore check b; %d\n", *check_b);
+			if(*check_a == 1)
 				check_a = check_order(stack_a, 'a', check_a);
+			if(*check_b == 1)
 				check_b = check_order(stack_b, 'b', check_b);
-			}
-			if (*check_a == 2 && *check_b == 2)
+			if(*check_a == 2 && *check_b == 2)
 				break;
 		//	printf("check a; %d\n", *check_a);
 		//	printf("check b; %d\n", *check_b);
 			if(tmp_a->idx == 0)
 			{
 				ra(stack_a);
-			//	printf("RA idx == 0\n");
 			}
-			else if(tmp_b->idx == size - 1)
+			if(tmp_b->idx == size - 1)
 			{
 				rb(stack_b);
-			//	printf("RB idx == 0\n");
 			}
-			else if (check_a != 0 && check_b != 0)
+			if (*check_a == 1 || *check_b == 1)
 			{
 				rotate(stack_a, stack_b, size, check_a, check_b);
-			//	display_lst(stack_a, "AFTER RO BOUCLE A");
-			//	display_lst(stack_b, "AFTER RO BOUCLE B");
+	//			display_lst(stack_a, "AFTER RO BOUCLE A");
+	//			display_lst(stack_b, "AFTER RO BOUCLE B");
 				swap(stack_a, stack_b, size, check_a, check_b);
-			//	display_lst(stack_a, "AFTER SWAP BOUCLE A");
-		//		display_lst(stack_b, "AFTER SWAP BOUCLE B");
-		//		printf("ro: %d, sw: %d\n", ro, sw);
+	//			display_lst(stack_a, "AFTER SWAP BOUCLE A");
+	//			display_lst(stack_b, "AFTER SWAP BOUCLE B");
 			}
 		}
 	}
+	*/
+	//finish(stack_a, stack_b);
 	return(*stack_a);
 }
 
+void finish(t_lst **stack_a, t_lst **stack_b)
+{
+	t_lst *tmp_b;
+
+	tmp_b = *stack_b;
+	while(tmp_b)
+	{
+		pa(stack_a, stack_b);
+		tmp_b = tmp_b->nx;
+	}
+	pa(stack_a, stack_b);
+}
 void halving(t_lst **stack_a, t_lst **stack_b, int ac)
 {
 	t_lst *tmp_a;
@@ -98,12 +117,11 @@ void halving(t_lst **stack_a, t_lst **stack_b, int ac)
 	grow = 0;
 	ac_maj = ac;
 	multi = set_multi(ac);
-	//printf("ac:%d\n", ac);
-	while(i < (ac / 2))	// 10
+	while(i < (ac / 2))
 	{
 		while(tmp_a != NULL && i < (ac / 2))
 		{
-			if (tmp_a->idx >= ((ac / 2) - grow))	// idx > 20 - 5 > idx > 15
+			if (tmp_a->idx >= ((ac / 2) - grow))
 			{
 				j = 0;
 				if (count <= (ac / 2))
@@ -147,7 +165,7 @@ void halving(t_lst **stack_a, t_lst **stack_b, int ac)
 		tmp_a = *stack_a;
 	}
 	last_a = ft_lstlast(*stack_a);
-	display_node(last_a);
+//	display_node(last_a);
 	//display_lst(stack_a, "A");
 	//display_lst(stack_b, "B");
 }
@@ -229,35 +247,34 @@ int rotate(t_lst **stack_a, t_lst **stack_b, int total_size, int *check_a, int *
 
 	tmp_a = *stack_a;
 	tmp_b = *stack_b;
-	//printf("ROTATE\n");
-	if(tmp_a->idx == 0 && check_a != 0)
+	if(tmp_a->idx == 0 && *check_a == 1)
 	{
 		ra(stack_a);
 		tmp_a = *stack_a;
 	//	printf("RA idx == 0\n");
 	}
-	if(tmp_b->idx == total_size - 1 && check_b != 0)
+	if(tmp_b->idx == total_size - 1 && *check_b == 1)
 	{
 		rb(stack_b);
 		tmp_b = *stack_b;
 	//	printf("RB idx == max\n");
 	}
-	if (tmp_a->idx > tmp_a->nx->idx && tmp_b->idx < tmp_b->nx->idx && (check_a != 0 || check_b != 0))
+	if (tmp_a->idx > tmp_a->nx->idx && tmp_b->idx < tmp_b->nx->idx && (*check_a == 1 && *check_b == 1))
 	{
 		rr(stack_a, stack_b);
-	//	printf("rr ROTATE\n");
+	//	printf("rr ROTATE\n");	modif b
 		return (1);
 	}
-	else if (tmp_a->idx > tmp_a->nx->idx && tmp_b->idx > tmp_b->nx->idx && check_a != 0)
+	else if (tmp_a->idx > tmp_a->nx->idx && *check_a == 1)
 	{
 		ra(stack_a);
-//		printf("ra ROTATE\n");
+	//	printf("ra ROTATE\n");		modif b
 		return (1);
 	}
-	else if (tmp_a->idx < tmp_a->nx->idx && tmp_b->idx < tmp_b->nx->idx && check_b != 0)
+	else if (tmp_b->idx < tmp_b->nx->idx && *check_b == 1)
 	{
 		rb(stack_b);
-//		printf("rb ROTATE\n");
+	//	printf("rb ROTATE\n");
 		return (1);
 	}
 	return (0);
@@ -270,32 +287,31 @@ int swap(t_lst **stack_a, t_lst **stack_b, int total_size, int *check_a, int *ch
 
 	tmp_a = *stack_a;
 	tmp_b = *stack_b;
-	//printf("SWAP\n");
-	if(tmp_a->idx == 0 && check_a != 0)
+	if(tmp_a->idx == 0 && *check_a == 1)
 	{
 		ra(stack_a);
 		tmp_a = *stack_a;
-		//printf("RA idx, swap == 0\n");
+//		printf("RA idx, swap == 0\n");
 	}
-	if(tmp_b->idx == total_size - 1 && check_b != 0)
+	if(tmp_b->idx == total_size - 1 && *check_b == 1)
 	{
 		rb(stack_b);
 		tmp_b = *stack_b;
-		//printf("RB idx, swap == max\n");
+	//	printf("RB idx, swap == max\n");
 	}
-	if (tmp_a->idx < tmp_a->nx->idx && tmp_b->idx > tmp_b->nx->idx && (check_a != 0 || check_b != 0))
+	if (tmp_a->idx < tmp_a->nx->idx && tmp_b->idx > tmp_b->nx->idx && (*check_a == 1 && *check_b == 1))
 	{
 		ss(stack_a, stack_b);
-		//printf("ss SWAP\n");
+	//	printf("ss SWAP\n");
 		return (1);
 	}
-	else if (tmp_a->idx < tmp_a->nx->idx && tmp_b->idx < tmp_b->nx->idx && check_a != 0)
+	else if (tmp_a->idx < tmp_a->nx->idx && *check_a == 1)
 	{
 		sa(stack_a);
-		//printf("sa SWAP\n");
+	//	printf("sa SWAP\n");
 		return(1);
 	}
-	else if (tmp_a->idx > tmp_a->nx->idx && tmp_b->idx > tmp_b->nx->idx && check_b != 0)
+	else if (tmp_b->idx > tmp_b->nx->idx && *check_b == 1)
 	{
 		sb(stack_b);
 	//	printf("sb SWAP\n");
@@ -408,3 +424,181 @@ void display_lst(t_lst **ptr_to_head, char *name)
 	printf("\n");
 }
 
+void radix(t_lst **stack_a, t_lst **stack_b)
+{
+	t_lst *tmp_a;
+	t_lst *tmp_b;
+	int i;
+	int count;
+
+	tmp_a = *stack_a;
+	tmp_b = *stack_b;
+	i = 9;
+	while (i > -1)
+	{
+		count = 0;
+		while(tmp_a)
+		{
+			while(tmp_a->idx % 10 == i && tmp_a->idx >= 10 && tmp_a)
+			{
+			//	printf("boucle count mod etc\n");
+				while(count > 0)
+				{
+					ra(stack_a);
+					tmp_a = *stack_a;
+					count--;
+				//	printf("count--;%d\n", count);
+				}
+				pb(stack_a, stack_b);
+				tmp_a = *stack_a;
+			//	display_lst(stack_a, "A");
+			//	display_lst(stack_b, "B");
+			}
+			tmp_a = tmp_a->nx;
+			count++;
+	//		printf("count 1 er step ++;%d\n", count);
+		}
+		tmp_a = *stack_a;
+		i--;
+	//	printf("I;%d\n", i);
+	}
+	sort_a(stack_a);
+//	tmp_a = *stack_a;
+//	display_lst(stack_a, "SORTED");
+// les + grand avant
+	i = 5;
+	while(i >= 0)
+	{
+		count = 0;
+		while(tmp_b)
+		{
+			while((tmp_b->idx / 100) == i && tmp_b-> idx >=100)
+			{
+				while(count > 0)
+				{
+					rb(stack_b);
+					count--;
+				}
+				pa(stack_a, stack_b);
+				tmp_b = *stack_b;
+			}
+			tmp_b = tmp_b->nx;
+			count++;
+		}
+		tmp_b = *stack_b;
+		i--;
+	}
+	while(tmp_b)
+	{
+		pa(stack_a, stack_b);
+		tmp_b = *stack_b;
+	}
+	tmp_b = *stack_b;
+//display_lst(stack_a, "PA_a");
+//	display_lst(stack_b, "PA_b");
+
+// 2 eme step >> les + petites ensuite
+	i = 0;
+	while(i <= 9)
+	{
+		count = 0;
+		while(tmp_b)
+		{
+			while((tmp_b->idx / 10) == i && tmp_b->idx < 100)
+			{
+				while(count > 0)
+				{
+					rb(stack_b);
+					count--;
+				}
+	//			printf("I RESULT MOD;%d\n", i);
+				pa(stack_a, stack_b);
+				tmp_b = *stack_b;
+			//	display_lst(stack_a, "2 step deb  A");
+			//	display_lst(stack_b, "2 step deb B");
+			}
+			//printf("CHECK\n");
+			if(tmp_b->nx)
+			{
+				tmp_b = tmp_b->nx;
+				count++;
+			}
+	//		printf("count 2 step deb ++;%d\n", count);
+		}
+		tmp_b = *stack_b;
+		i++;
+	}
+	while(tmp_b)
+	{
+		pa(stack_a, stack_b);
+		tmp_b = *stack_b;
+	}
+	tmp_b = *stack_b;
+}
+
+void sort_a(t_lst **stack_a)
+{
+	t_lst *tmp;
+	int a = 1;
+	int *check_a = &a;
+
+	tmp = *stack_a;
+	while (*check_a == 1)
+	{
+		if(*check_a == 1)
+			check_a = check_order(stack_a, 'a', check_a);
+		if(*check_a == 2)
+			break;
+		if(tmp->idx == 0)
+		{
+			ra(stack_a);
+		}
+		if (*check_a == 1)
+		{
+			rotate_a(stack_a, check_a);
+			swap_a(stack_a, check_a);
+		}
+	}
+}
+
+int rotate_a(t_lst **stack_a, int *check_a)
+{
+	t_lst *tmp_a;
+
+	tmp_a = *stack_a;
+	if(tmp_a->idx == 0 && *check_a == 1)
+	{
+		ra(stack_a);
+//		printf("ra rotate\n");
+		tmp_a = *stack_a;
+	}
+	else if (tmp_a->idx > tmp_a->nx->idx && *check_a == 1)
+	{
+		ra(stack_a);
+//		printf("ra rotate\n");
+		return (1);
+	}
+//	display_lst(stack_a, "ROTATE A");
+	return (0);
+}
+
+int swap_a(t_lst **stack_a, int *check_a)
+{
+	t_lst *tmp_a;
+
+	tmp_a = *stack_a;
+	if(tmp_a->idx == 0 && *check_a == 1)
+	{
+		ra(stack_a);
+//		printf("ra swap\n");
+		tmp_a = *stack_a;
+	}
+	else if (tmp_a->idx < tmp_a->nx->idx && *check_a == 1)
+	{
+		sa(stack_a);
+//		printf("sa swap\n");
+		return(1);
+	}
+//	display_lst(stack_a, "SWAP A");
+	return (0);
+}

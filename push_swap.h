@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/20 19:14:40 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:52:43 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void ss(t_lst **stack_a, t_lst **stack_b);
 void pa(t_lst **stack_a, t_lst **stack_b);
 int pb(t_lst **stack_a, t_lst **stack_b);
 t_lst *rra(t_lst **head);
+t_lst *rrb(t_lst **head);
 t_lst *rb(t_lst **head);
 void rr(t_lst **stack_a, t_lst **stack_b);
 t_lst *ra(t_lst **head);
