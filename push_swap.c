@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/21 20:12:56 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:23:52 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void sort_3(t_lst **stack_a, t_lst **stack_b);
 int swap_a(t_lst **stack_a, int *check_a);
 int rotate_a(t_lst **stack_a, int *check_a);
 void sort_a(t_lst **stack_a);
+void radix_2(t_lst **stack_a, t_lst **stack_b);
+void convert_to_bits(int idx, int *tab);
 
 t_lst *push_swap(t_lst **stack_a, t_lst **stack_b, int ac)
 {
@@ -38,7 +40,7 @@ t_lst *push_swap(t_lst **stack_a, t_lst **stack_b, int ac)
 	}
 	else
 	{
-		radix(stack_a, stack_b);
+		radix_2(stack_a, stack_b);
 	//	display_lst(stack_a, "RADIX 1 step A");
 	//	display_lst(stack_b, "RADIX 1step B");
 	}
@@ -424,118 +426,6 @@ void display_lst(t_lst **ptr_to_head, char *name)
 	printf("\n");
 }
 
-void radix(t_lst **stack_a, t_lst **stack_b)
-{
-	t_lst *tmp_a;
-	t_lst *tmp_b;
-	int i;
-	int count;
-
-	tmp_a = *stack_a;
-	tmp_b = *stack_b;
-	i = 9;
-	while (i > -1)
-	{
-		count = 0;
-		while(tmp_a)
-		{
-			while(tmp_a->idx % 10 == i && tmp_a->idx >= 10 && tmp_a)
-			{
-			//	printf("boucle count mod etc\n");
-				while(count > 0)
-				{
-					ra(stack_a);
-					tmp_a = *stack_a;
-					count--;
-				//	printf("count--;%d\n", count);
-				}
-				pb(stack_a, stack_b);
-				tmp_a = *stack_a;
-			//	display_lst(stack_a, "A");
-			//	display_lst(stack_b, "B");
-			}
-			tmp_a = tmp_a->nx;
-			count++;
-	//		printf("count 1 er step ++;%d\n", count);
-		}
-		tmp_a = *stack_a;
-		i--;
-	//	printf("I;%d\n", i);
-	}
-	sort_a(stack_a);
-//	tmp_a = *stack_a;
-//	display_lst(stack_a, "SORTED");
-// les + grand avant
-	i = 5;
-	while(i >= 0)
-	{
-		count = 0;
-		while(tmp_b)
-		{
-			while((tmp_b->idx / 100) == i && tmp_b-> idx >=100)
-			{
-				while(count > 0)
-				{
-					rb(stack_b);
-					count--;
-				}
-				pa(stack_a, stack_b);
-				tmp_b = *stack_b;
-			}
-			tmp_b = tmp_b->nx;
-			count++;
-		}
-		tmp_b = *stack_b;
-		i--;
-	}
-	while(tmp_b)
-	{
-		pa(stack_a, stack_b);
-		tmp_b = *stack_b;
-	}
-	tmp_b = *stack_b;
-//display_lst(stack_a, "PA_a");
-//	display_lst(stack_b, "PA_b");
-
-// 2 eme step >> les + petites ensuite
-	i = 0;
-	while(i <= 9)
-	{
-		count = 0;
-		while(tmp_b)
-		{
-			while((tmp_b->idx / 10) == i && tmp_b->idx < 100)
-			{
-				while(count > 0)
-				{
-					rb(stack_b);
-					count--;
-				}
-	//			printf("I RESULT MOD;%d\n", i);
-				pa(stack_a, stack_b);
-				tmp_b = *stack_b;
-			//	display_lst(stack_a, "2 step deb  A");
-			//	display_lst(stack_b, "2 step deb B");
-			}
-			//printf("CHECK\n");
-			if(tmp_b->nx)
-			{
-				tmp_b = tmp_b->nx;
-				count++;
-			}
-	//		printf("count 2 step deb ++;%d\n", count);
-		}
-		tmp_b = *stack_b;
-		i++;
-	}
-	while(tmp_b)
-	{
-		pa(stack_a, stack_b);
-		tmp_b = *stack_b;
-	}
-	tmp_b = *stack_b;
-}
-
 void sort_a(t_lst **stack_a)
 {
 	t_lst *tmp;
@@ -601,4 +491,55 @@ int swap_a(t_lst **stack_a, int *check_a)
 	}
 //	display_lst(stack_a, "SWAP A");
 	return (0);
+}
+
+void radix_2(t_lst **stack_a, t_lst **stack_b)
+{
+	t_lst *tmp_a;
+	t_lst *tmp_b;
+	int i = 0;
+
+	tmp_a = *stack_a;
+	tmp_b = *stack_b;
+	while(tmp_a)
+	{
+		//printf("CONVERT\n");
+		convert_to_bits(tmp_a->idx, tmp_a->tab);
+		while(i < 9)
+		{
+			printf("%d", tmp_a->tab[i]);
+			i++;
+		}
+		printf("\n");
+		tmp_a = tmp_a->nx;
+		i = 0;
+	}
+
+}
+
+void convert_to_bits(int idx, int *tab)
+{
+	int to_add;
+	int i;
+	//int tab[9] = {0,0,0,0,0,0,0,0,0};
+	float res;
+
+	i = 8;
+	while(i >= 0)
+	{
+		//printf("which idx;%d\n", idx);
+		if (idx > 0)
+		{
+			res = idx / 2;
+		//	printf("idx; %d\n", idx);
+			if (idx % 2 == 1 || (res < 1 && res != 0))
+				to_add = 1;
+			else if (idx % 2 == 0)
+				to_add = 0;
+			tab[i] = to_add;
+			//printf("tab: %d\n",tab[i]);
+			idx = (int)res;
+		}
+		i--;
+	}
 }
