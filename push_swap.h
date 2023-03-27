@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/22 18:14:53 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:49:08 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,13 @@ typedef struct s_data
 }t_data;
 
 t_lst *push_swap(t_lst **stack_a, t_lst **stack_b, int ac);
-void halving(t_lst **stack_a, t_lst **stack_b, int ac);
-int set_multi(int size);
-int *check_order(t_lst **stack, char which_stack, int *check);
-int rotate(t_lst **stack_a, t_lst **stack_b, int total_size, int *check_a, int *check_b);
-int swap(t_lst **stack_a, t_lst **stack_b, int total_size, int *check_a, int *check_b);
 int *create_tab(t_lst **lst, int size);
-void indexation(t_lst **lst, int *tab);
+void indexation(t_lst **lst, int *tab, int size);
 void display_node(t_lst *lst);
 t_lst	*ft_lstnew(int nbr);
 t_lst	*ft_lstnew_b();
 void display_lst(t_lst **ptr_to_head, char *name);
+void radix_3(t_lst **stack_a, t_lst **stack_b, int size);
 
 t_lst *sa(t_lst **head);
 t_lst *sb(t_lst **head);

@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 18:09:20 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/20 20:17:07 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:43:16 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,12 @@ int main (int ac, char **av)
 		}
 		tab = create_tab(&stack_a, ac);
 		bubble_sort(tab, ac - 1);
-		indexation(&stack_a, tab);
-		//display_lst(&stack_a, "STACK A");
-		//rra(&stack_a);
-		//printf("After SA");
-		//display_lst(&stack_a, "STACK A");
-		//display_lst(&stack_b, "STACK B");
+		indexation(&stack_a, tab, ac);
+	//	display_lst(&stack_a, "STACK A");
+	//	display_lst(&stack_b, "STACK B");
 		push_swap(&stack_a, &stack_b, ac);
-
-		//display_lst(&stack_a, "STACK A");
-		//display_lst(&stack_b, "STACK B");
+	//	display_lst(&stack_b, "STACK B");
+	//	display_lst(&stack_a, "STACK A");
 	}
 	else
 		return (0);
