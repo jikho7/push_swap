@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/27 22:49:08 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:29:37 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,9 @@ typedef struct s_lst
 {
 	int			nbr;
 	int			idx;
-	int			tab[9];
 	struct s_lst	*nx;
-	struct s_lst	*back;
 }t_lst;
 
-typedef struct s_a
-{
-	int *check;
-	t_lst **stack_a;
-	t_lst *tmp_a;
-}t_a;
-
-typedef struct s_b
-{
-	int *check;
-	t_lst **stack_b;
-	t_lst *tmp_b;
-}t_b;
-
-typedef struct s_data
-{
-	int		i;
-	int		j;
-	int		k;
-	int		size;
-	int		*tab;
-	char	**av;
-}t_data;
 
 t_lst *push_swap(t_lst **stack_a, t_lst **stack_b, int ac);
 int *create_tab(t_lst **lst, int size);
@@ -77,13 +52,11 @@ int	ft_lstsize(t_lst *lst);
 t_lst	*ft_lstlast(t_lst *lst);
 void	ft_lstclear(t_lst **lst);
 void	ft_lstdelone(t_lst *lst);
+int	ft_atoi(const char *str);
+int ps_strlen(char *str);
 
-void push_front(t_lst ** ptr_to_head, t_data *val);
 void add_front2(t_lst **head, t_lst *node_to_add);
-void push_end(t_lst *head, t_data *val);
 void add_back2(t_lst **head, t_lst *node_to_add);
-void add_front(t_lst **ptr_to_head, int x);
-void add_back(t_lst **ptr_to_head, int x);
 t_lst	*del_first(t_lst **head);
 
 t_lst	*below_5_numbers(t_lst **stack_a, t_lst **stack_b, int ac);
@@ -95,5 +68,7 @@ t_lst **two(t_lst **stack);
 t_lst *three(t_lst **stack);
 t_lst *four(t_lst **stack_a, t_lst **stack_b);
 t_lst *sort_five(t_lst **stack_a, t_lst **stack_b);
+
+char	**ps_split(const char *str, char c);
 
 # endif

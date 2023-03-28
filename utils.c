@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:04:16 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/08 14:42:45 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:30:38 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,35 @@ void bubble_sort(int *tab, int size)
 	}
 }
 
+int	ft_atoi(const char *str)
+{
+	int	result;
+	int	sign;
+	int	minus;
+
+	result = 0;
+	sign = 0;
+	minus = 0;
+	while (*str == 32)
+		str++;
+	while (*str == '-' || *str == '+' || *str == 32)
+	{
+		if (*str == '-')
+			minus++;
+		sign++;
+		str++;
+	}
+	if (sign > 1 || minus > 1)
+		return (0);
+	while (*str >= '0' && *str <= '9')
+		result = (result * 10) + *(str++) - '0';
+	if (result == -2147483648)
+		return (-2147483648);
+	if (minus == 1)
+		result = result * -1;
+	return (result);
+}
+
 int	ft_lstsize(t_lst *lst)
 {
 	int	nbr_element;
@@ -110,6 +139,15 @@ void	ft_lstclear(t_lst **lst)
 void	ft_lstdelone(t_lst *lst)
 {
 	lst->nx = NULL;
-	lst->back = NULL;
 	free (lst);
+}
+
+int ps_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while(str[i] != '\0')
+		i++;
+	return(i);
 }

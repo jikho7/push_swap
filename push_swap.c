@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/27 22:48:41 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:30:21 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,10 @@ void display_node(t_lst *lst)
 {
 	if (lst != NULL)
 	{
-		printf("[%p] {value = %d | indice = %d | nx = %p | back = %p}\n", lst,
+		printf("[%p] {value = %d | indice = %d | nx = %p}\n", lst,
 			lst->nbr,
 			lst->idx,
-			lst->nx,
-			lst->back);
+			lst->nx);
 	}
 }
 
@@ -161,7 +160,6 @@ void radix_3(t_lst **stack_a, t_lst **stack_b, int size)
 			}
 			j++;
 		}
-
 		while(*stack_b)
 		{
 			pa(stack_a, stack_b);

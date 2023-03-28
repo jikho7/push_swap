@@ -6,7 +6,7 @@
 #    By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:49:08 by jdefayes          #+#    #+#              #
-#    Updated: 2023/03/01 11:51:28 by jdefayes         ###   ########.fr        #
+#    Updated: 2023/03/28 12:29:38 by jdefayes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC		=	main.c\
 			handle_lists.c\
 			handle_piles.c\
 			below_5_numbers.c\
+			ps_split.c\
 
 OBJ		= ${SRC:.c=.o}
 FLAGS	= -Wall -Werror -Wextra -g
@@ -37,6 +38,7 @@ all: $(NAME)
 	$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJ)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)
