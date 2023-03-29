@@ -6,34 +6,16 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:27:46 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/28 18:18:25 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:22:41 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 static int		delete_word(char **str, int size);
 static int		count_words(const char *str, char sign);
 static void		write_word(char *dest, const char *from, char sign);
 static int		write_split(char **split, const char *str, char sign);
-char			**ps_split(const char *str, char c);
-
-/*int main ()
-{
-	char str[] = "coucou, les, gens,,.";
-	char sign = ' ';
-	int index;
-	char **result;
-	result = ft_split(str, sign);
-	index = 0;
-	while (result[index])
-	{
-		printf("%s\n", result[index]);
-		index++;
-	}
-	return 0;
-}
-*/
 
 static int	delete_word(char **str, int size)
 {
@@ -102,7 +84,7 @@ static int	write_split(char **tab_split, const char *str, char sign)
 	return (0);
 }
 
-char	**ps_split(const char *str, char c)
+char	**ft_split(const char *str, char c)
 {
 	char	**tab_result;
 	int		words;

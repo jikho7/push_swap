@@ -6,51 +6,26 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:04:16 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/28 19:30:38 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:11:37 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-void	*ft_calloc(size_t count, size_t size)
-{
-	void			*result;
-	unsigned int	i;
-
-	i = 0;
-	result = malloc((size) * (count));
-	if (result == NULL)
-		return (NULL);
-	if (size * count > 0)
-		ft_bzero(result, (count * size));
-	return (result);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
-	char	*cs;
-
-	cs = (char *)s;
-	i = 0;
-	while (i < n)
-		cs[i++] = '\0';
-}
-
-void bubble_sort(int *tab, int size)
+void	bubble_sort(int *tab, int size)
 {
 	int	tmp;
-	int i;
-	int swap;
+	int	i;
+	int	swap;
 
 	i = 0;
 	swap = 1;
-	while(swap >= 1)
+	while (swap >= 1)
 	{
 		swap = 0;
-		while(i < size - 1)
+		while (i < size - 1)
 		{
-			if(tab[i] < tab [i + 1])
+			if (tab[i] < tab [i + 1])
 			{
 				tmp = tab[i];
 				tab[i] = tab[i + 1];
@@ -63,60 +38,66 @@ void bubble_sort(int *tab, int size)
 	}
 }
 
-int	ft_atoi(const char *str)
+int	*create_tab(t_lst **lst, int *ptr)
 {
-	int	result;
-	int	sign;
-	int	minus;
+	t_lst	*tmp;
+	int		*tab;
+	int		i;
+	int		size;
 
-	result = 0;
-	sign = 0;
-	minus = 0;
-	while (*str == 32)
-		str++;
-	while (*str == '-' || *str == '+' || *str == 32)
+	i = 0;
+	size = ft_lstsize(*lst);
+	tab = malloc(sizeof(int) * size);
+	tmp = *lst;
+	while (i < size)
 	{
-		if (*str == '-')
-			minus++;
-		sign++;
-		str++;
+		tab[i] = tmp->nbr;
+		tmp = tmp->nx;
+		i++;
 	}
-	if (sign > 1 || minus > 1)
-		return (0);
-	while (*str >= '0' && *str <= '9')
-		result = (result * 10) + *(str++) - '0';
-	if (result == -2147483648)
-		return (-2147483648);
-	if (minus == 1)
-		result = result * -1;
-	return (result);
+	check_doublon_max_int(tab, size);
+	*ptr = size;
+	return (tab);
 }
 
-int	ft_lstsize(t_lst *lst)
+void	indexation(t_lst **lst, int *tab)
 {
-	int	nbr_element;
+	int		j;
+	int		k;
+	t_lst	*tmp;
 
-	nbr_element = 0;
-	while (!lst)
-		return (0);
-	while (lst)
+	tmp = *lst;
+	j = 0;
+	k = 1;
+	if (tmp != NULL)
 	{
-		nbr_element++;
-		lst = lst->nx;
+		while (tmp->nx)
+		{
+			while (tmp->nbr != tab[j++])
+				k++;
+			tmp->idx = k;
+			tmp = tmp->nx;
+			j = 0;
+			k = 1;
+		}
+		while (tmp->nbr != tab[j++])
+			k++;
+		tmp->idx = k;
+		tmp = tmp->nx;
 	}
-	return (nbr_element);
 }
 
-t_lst	*ft_lstlast(t_lst *lst)
+t_lst	*rra_twice(t_lst **stack)
 {
-	if (lst != NULL)
+	int	i;
+
+	i = 0;
+	while (i < 2)
 	{
-		while (lst->nx)
-			lst = lst->nx;
-		return (lst);
+		rra(stack);
+		i++;
 	}
-	else
-		return (lst);
+	return (*stack);
 }
 
 void	ft_lstclear(t_lst **lst)
@@ -134,20 +115,4 @@ void	ft_lstclear(t_lst **lst)
 	}
 	else
 		*lst = NULL;
-}
-
-void	ft_lstdelone(t_lst *lst)
-{
-	lst->nx = NULL;
-	free (lst);
-}
-
-int ps_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while(str[i] != '\0')
-		i++;
-	return(i);
 }

@@ -6,7 +6,7 @@
 #    By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:49:08 by jdefayes          #+#    #+#              #
-#    Updated: 2023/03/28 12:29:38 by jdefayes         ###   ########.fr        #
+#    Updated: 2023/03/29 17:06:06 by jdefayes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,15 @@ NAME	= push_swap
 ###################################
 ##SOURCES
 SRC		=	main.c\
-			push_swap.c\
+			create_lst.c\
 			utils.c\
+			libft_ft.c\
+			push_swap.c\
 			handle_lists.c\
 			handle_piles.c\
 			below_5_numbers.c\
+			exceptions_below_5.c\
+			lst_infos.c\
 			ps_split.c\
 
 OBJ		= ${SRC:.c=.o}
