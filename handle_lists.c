@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:36:18 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/29 17:13:27 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:11:57 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	add_back(t_lst **head, t_lst *node_to_add)
 
 	current = *head;
 	while (current->nx)
-	{
 		current = current->nx;
-	}
 	node_to_add->nx = NULL;
 	current->nx = node_to_add;
 }

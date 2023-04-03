@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:16:57 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 17:47:48 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:12:27 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ void	display_lst(t_lst **ptr_to_head, char *name)
 		display_node(current_node);
 	}
 	else
-	{
 		printf("The stack is empty.\n");
-	}
 	printf("\n");
 }
 

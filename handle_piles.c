@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:11:11 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 19:28:26 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:12:10 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ t_lst	*rra(t_lst **head)
 	tmp = *head;
 	size = ft_lstsize(*head);
 	while (tmp->nx)
-	{
 		tmp = tmp->nx;
-	}
 	to_add = tmp;
 	to_add->nx = *head;
 	tmp = to_add;

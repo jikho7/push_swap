@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:59:26 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 20:09:12 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:11:35 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ t_lst	*create_lst(int ac, char **av, char **res_split)
 	j = 1;
 	stack_a = NULL;
 	if (ac == 2)
-	{
 		stack_a = handle_str(res_split);
-	}
 	else if (ac > 2)
 	{
 		stack_a = ft_lstnew(ft_atoi(av[1], stack_a));

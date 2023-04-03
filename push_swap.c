@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 20:10:20 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:12:45 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ void	radix(t_lst **stack_a, t_lst **stack_b, int size)
 		{
 			tmp = *stack_a;
 			if ((tmp->idx >> i & 1) == 0)
-			{
 				ra(stack_a);
-			}
 			else if ((tmp->idx >> i & 1) == 1)
 				pb(stack_a, stack_b);
 			j++;

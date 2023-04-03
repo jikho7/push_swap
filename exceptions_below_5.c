@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:59:33 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/29 17:11:11 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:11:45 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ int	exception_4(t_lst **stack, int in_order)
 		&& t->nx->nx->nx->idx > t->nx->idx)
 		return (3);
 	else if (in_order == 4)
-	{
 		except_4_order_4(stack);
-	}
 	return (0);
 }
 

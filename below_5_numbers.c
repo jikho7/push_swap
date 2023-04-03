@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:22:36 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/29 16:53:44 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:11:11 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,11 @@ t_lst	*below_5_numbers(t_lst **stack_a, t_lst **stack_b, int ac)
 	if (ac == 3)
 		sort_two_nb(stack_a);
 	if (ac == 4)
-	{
 		sort_three_nb(stack_a);
-	}
 	if (ac == 5)
-	{
 		sort_four_nb(stack_a, stack_b);
-	}
 	if (ac == 6)
-	{
 		sort_five_nb(stack_a, stack_b);
-	}
 	ft_lstclear(stack_b);
 	return (*stack_a);
 }
@@ -41,9 +35,7 @@ t_lst	**sort_two_nb(t_lst **stack)
 
 	lst = *stack;
 	if (lst->idx < lst->nx->idx)
-	{
 		sa(stack);
-	}
 	return (stack);
 }
 
@@ -83,21 +75,13 @@ t_lst	*sort_four_nb(t_lst **stack_a, t_lst **stack_b)
 	tmp = *stack_a;
 	exception = exceptions(stack_a);
 	if (exception == 1)
-	{
 		return (*stack_a);
-	}
 	else if (exception == 2)
-	{
 		write(1, "", 0);
-	}
 	else if (exception == 3)
-	{
 		rra(stack_a);
-	}
 	else
-	{
 		exception_4(stack_a, 4);
-	}
 	pb(stack_a, stack_b);
 	sort_three_nb(stack_a);
 	pa(stack_a, stack_b);
