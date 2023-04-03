@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 19:37:02 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:53:08 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ void	error(void);
 
 void	free_double_tab(char **tab, int size, int ac);
 int		check_order(t_lst **stack);
-t_lst	*generate_lst(t_lst **stack, int size, long *tab);
+t_lst	*generate_lst(t_lst *stack, int size, long *tab, int i);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:49:08 by jdefayes          #+#    #+#              #
-#    Updated: 2023/03/29 17:06:06 by jdefayes         ###   ########.fr        #
+#    Updated: 2023/04/03 20:12:24 by jdefayes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ NAME	= push_swap
 ##SOURCES
 SRC		=	main.c\
 			create_lst.c\
+			checks_n_free.c\
 			utils.c\
 			libft_ft.c\
 			push_swap.c\

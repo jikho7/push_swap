@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:59:26 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 19:37:46 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:09:12 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_lst	*handle_str(char **str)
 	int		i;
 	int		size_tab;
 	long	*tab;
-	t_lst	*tmp;
 	t_lst	*stack_a;
 
 	i = 0;
@@ -57,17 +56,25 @@ t_lst	*handle_str(char **str)
 		tab[i] = ft_atoi(str[i], stack_a);
 		i++;
 	}
-	i = 1;
-	stack_a = ft_lstnew(tab[0]);
-	while (i < size_tab)
-	{
-		tmp = ft_lstnew(tab[i]);
-		add_back(&stack_a, tmp);
-		i++;
-	}
+	stack_a = generate_lst(stack_a, size_tab, tab, 1);
 	check_max_min(tab, size_tab, stack_a);
 	free(tab);
 	return (stack_a);
+}
+
+t_lst	*generate_lst(t_lst *stack, int size, long *tab, int i)
+{
+	t_lst	*tmp;
+
+	i = 1;
+	stack = ft_lstnew(tab[0]);
+	while (i < size)
+	{
+		tmp = ft_lstnew(tab[i]);
+		add_back(&stack, tmp);
+		i++;
+	}
+	return (stack);
 }
 
 int	verif_split(char **tab)
@@ -97,34 +104,4 @@ int	verif_split(char **tab)
 		i++;
 	}
 	return (i);
-}
-
-void	check_doublon(long *tab, int size, t_lst *stack_a)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	i = 0;
-	while (j < size)
-	{
-		i = 1 + j;
-		while (i < size)
-		{
-			if (tab[i] == tab[j])
-			{
-				free(tab);
-				ft_lstclear(&stack_a);
-				error();
-			}
-			i++;
-		}
-		j++;
-	}
-}
-
-void	error(void)
-{
-	write(2, "Error\n", 6);
-	exit(2);
 }

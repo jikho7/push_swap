@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 18:09:20 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 19:28:18 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:10:48 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,39 +37,4 @@ int	main(int ac, char **av)
 	}
 	else
 		return (0);
-}
-
-void	free_double_tab(char **tab, int size, int ac)
-{
-	int	i;
-
-	i = 0;
-	if (ac == 2)
-	{
-		while (i < size)
-		{
-			free(tab[i]);
-			i++;
-		}
-	}
-	else
-		free(tab[0]);
-	free(tab);
-}
-
-void	check_max_min(long *tab, int size, t_lst *stack)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (tab[i] > 2147483647 || tab[i] < -2147483648)
-		{
-			free(tab);
-			ft_lstclear(&stack);
-			error();
-		}
-		i++;
-	}
 }
