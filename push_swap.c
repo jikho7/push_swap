@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:28:59 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/29 17:03:51 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:24:52 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ t_lst	*push_swap(t_lst **stack_a, t_lst **stack_b, int size)
 	}
 	else
 		radix(stack_a, stack_b, ac);
+//	printf("plop\n");
+	ft_lstclear(stack_b);
+//	printf("end pushswap\n");
 	return (*stack_a);
 }
 
@@ -55,6 +58,7 @@ void	radix(t_lst **stack_a, t_lst **stack_b, int size)
 			pa(stack_a, stack_b);
 		i++;
 	}
+//	printf("end radix\n");
 }
 
 static int	bit_size(int size)

@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:04:16 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/29 17:11:37 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:48:33 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	*create_tab(t_lst **lst, int *ptr)
 	i = 0;
 	size = ft_lstsize(*lst);
 	tab = malloc(sizeof(int) * size);
+//	printf("adresse create tab; %p\n", tab);
 	tmp = *lst;
 	while (i < size)
 	{
@@ -55,7 +56,6 @@ int	*create_tab(t_lst **lst, int *ptr)
 		tmp = tmp->nx;
 		i++;
 	}
-	check_doublon_max_int(tab, size);
 	*ptr = size;
 	return (tab);
 }
