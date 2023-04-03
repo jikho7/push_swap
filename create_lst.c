@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:59:26 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 15:15:48 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:37:46 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ t_lst	*create_lst(int ac, char **av, char **res_split)
 	stack_a = NULL;
 	if (ac == 2)
 	{
-	//	printf("ac ==2\n");
 		stack_a = handle_str(res_split);
 	}
 	else if (ac > 2)
 	{
-	//	printf("ac +2\n");
 		stack_a = ft_lstnew(ft_atoi(av[1], stack_a));
 		i = 2;
 		while (i < ac)
@@ -39,7 +37,6 @@ t_lst	*create_lst(int ac, char **av, char **res_split)
 			i++;
 		}
 	}
-//	display_lst(&stack_a, "create_lst result");
 	return (stack_a);
 }
 
@@ -47,22 +44,19 @@ t_lst	*handle_str(char **str)
 {
 	int		i;
 	int		size_tab;
-	int		*tab;
+	long	*tab;
 	t_lst	*tmp;
 	t_lst	*stack_a;
 
 	i = 0;
 	stack_a = NULL;
 	size_tab = verif_split(str);
-	tab = malloc(sizeof(int) * size_tab);
-//	printf("adresse handle_str; %p\n", tab);
+	tab = malloc(sizeof(long) * size_tab);
 	while (i < size_tab)
 	{
-	//	printf("boucle");
 		tab[i] = ft_atoi(str[i], stack_a);
 		i++;
 	}
-//	printf("tab[i], handle_str;%d\n", tab[0]);
 	i = 1;
 	stack_a = ft_lstnew(tab[0]);
 	while (i < size_tab)
@@ -71,7 +65,7 @@ t_lst	*handle_str(char **str)
 		add_back(&stack_a, tmp);
 		i++;
 	}
-//	display_lst(&stack_a, "handle_lst result");
+	check_max_min(tab, size_tab, stack_a);
 	free(tab);
 	return (stack_a);
 }
@@ -105,7 +99,7 @@ int	verif_split(char **tab)
 	return (i);
 }
 
-void	check_doublon(int *tab, int size, t_lst *stack_a)
+void	check_doublon(long *tab, int size, t_lst *stack_a)
 {
 	int	i;
 	int	j;

@@ -6,17 +6,17 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:04:16 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 15:48:33 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:25:01 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	bubble_sort(int *tab, int size)
+void	bubble_sort(long *tab, int size)
 {
-	int	tmp;
-	int	i;
-	int	swap;
+	long	tmp;
+	int		i;
+	int		swap;
 
 	i = 0;
 	swap = 1;
@@ -38,17 +38,16 @@ void	bubble_sort(int *tab, int size)
 	}
 }
 
-int	*create_tab(t_lst **lst, int *ptr)
+long	*create_tab(t_lst **lst, int *ptr)
 {
 	t_lst	*tmp;
-	int		*tab;
+	long	*tab;
 	int		i;
 	int		size;
 
 	i = 0;
 	size = ft_lstsize(*lst);
-	tab = malloc(sizeof(int) * size);
-//	printf("adresse create tab; %p\n", tab);
+	tab = malloc(sizeof(long) * size);
 	tmp = *lst;
 	while (i < size)
 	{
@@ -60,7 +59,7 @@ int	*create_tab(t_lst **lst, int *ptr)
 	return (tab);
 }
 
-void	indexation(t_lst **lst, int *tab)
+void	indexation(t_lst **lst, long *tab)
 {
 	int		j;
 	int		k;

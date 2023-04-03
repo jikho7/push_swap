@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:11:11 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/29 17:14:40 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:28:26 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ int	pb(t_lst **stack_a, t_lst **stack_b)
 		to_move = del_first(stack_a);
 		add_front(stack_b, to_move);
 	}
-	else
-		write(1, "", 0);
 	write(1, "pb\n", 3);
 	return (0);
 }
@@ -58,8 +56,6 @@ void	pa(t_lst **stack_a, t_lst **stack_b)
 		to_move = del_first(stack_b);
 		add_front(stack_a, to_move);
 	}
-	else
-		write(1, "", 0);
 	write(1, "pa\n", 3);
 }
 

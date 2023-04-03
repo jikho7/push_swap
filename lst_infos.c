@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:16:57 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/03/29 15:18:17 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:47:48 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	display_node(t_lst *lst)
 {
 	if (lst != NULL)
 	{
-		printf("[%p] {value = %d | indice = %d | nx = %p}\n", lst,
+		printf("[%p] {value = %ld | indice = %d | nx = %p}\n", lst,
 			lst->nbr,
 			lst->idx,
 			lst->nx);

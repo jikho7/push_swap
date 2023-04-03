@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:27:46 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 12:51:43 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:28:03 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ char	**ft_split(const char *str, char c)
 
 	words = count_words(str, c);
 	tab_result = (char **)malloc(sizeof(char *) * (words + 1));
-//	printf("adresse split result; %p\n", tab_result);
 	if (tab_result == NULL)
 		return (NULL);
 	tab_result[words] = 0;

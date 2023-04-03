@@ -6,17 +6,15 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 18:09:20 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 15:59:34 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:28:18 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_order(int *tab, int size);
-
 int	main(int ac, char **av)
 {
-	int		*tab;
+	long	*tab;
 	int		size;
 	char	**res_split;
 	t_lst	*stack_a;
@@ -32,13 +30,9 @@ int	main(int ac, char **av)
 		check_max_min(tab, size, stack_a);
 		bubble_sort(tab, size);
 		indexation(&stack_a, tab);
-	//	printf("size;%d", size);
-		check_order(tab, size);
 		free(tab);
-	//	printf("split tab;%s\n", res_split[0]);
 		free_double_tab(res_split, size, ac);
 		push_swap(&stack_a, &stack_b, size);
-		//display_lst(&stack_a, "sorted");
 		ft_lstclear(&stack_a);
 	}
 	else
@@ -57,15 +51,13 @@ void	free_double_tab(char **tab, int size, int ac)
 			free(tab[i]);
 			i++;
 		}
-		free(tab);
 	}
 	else
-	{
 		free(tab[0]);
-	}
+	free(tab);
 }
 
-void	check_max_min(int *tab, int size, t_lst *stack)
+void	check_max_min(long *tab, int size, t_lst *stack)
 {
 	int	i;
 
@@ -80,19 +72,4 @@ void	check_max_min(int *tab, int size, t_lst *stack)
 		}
 		i++;
 	}
-}
-
-int	check_order(int *tab, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (tab[i] > tab[i - 1])
-			i++;
-		if (tab[i] < tab[i - 1])
-			return (0);
-	}
-	exit(2);
 }

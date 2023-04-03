@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 15:21:32 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:37:02 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 typedef struct s_lst
 {
-	int				nbr;
+	long			nbr;
 	int				idx;
 	struct s_lst	*nx;
 }t_lst;
 
 t_lst	*push_swap(t_lst **stack_a, t_lst **stack_b, int size);
-int		*create_tab(t_lst **lst, int *ptr);
-void	indexation(t_lst **lst, int *tab);
+long	*create_tab(t_lst **lst, int *ptr);
+void	indexation(t_lst **lst, long *tab);
 void	display_node(t_lst *lst);
 t_lst	*ft_lstnew(int nbr);
 t_lst	*ft_lstnew_b(void);
@@ -41,12 +41,12 @@ t_lst	*ra(t_lst **head);
 
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
-void	bubble_sort(int *tab, int size);
+void	bubble_sort(long *tab, int size);
 int		ft_lstsize(t_lst *lst);
 t_lst	*ft_lstlast(t_lst *lst);
 void	ft_lstclear(t_lst **lst);
 void	ft_lstdelone(t_lst *lst);
-int		ft_atoi(const char *str, t_lst *stack);
+long	ft_atoi(const char *str, t_lst *stack);
 
 void	add_front(t_lst **head, t_lst *node_to_add);
 void	add_back(t_lst **head, t_lst *node_to_add);
@@ -66,11 +66,13 @@ t_lst	*sort_five_nb(t_lst **stack_a, t_lst **stack_b);
 char	**ft_split(const char *str, char c);
 int		verif_split(char **tab);
 t_lst	*handle_str(char **str);
-void	check_doublon(int *tab, int size, t_lst *stack);
-void	check_max_min(int *tab, int size, t_lst *stack);
+void	check_doublon(long *tab, int size, t_lst *stack);
+void	check_max_min(long *tab, int size, t_lst *stack);
 t_lst	*create_lst(int ac, char **av, char **res_split);
 void	error(void);
 
 void	free_double_tab(char **tab, int size, int ac);
+int		check_order(t_lst **stack);
+t_lst	*generate_lst(t_lst **stack, int size, long *tab);
 
 #endif
