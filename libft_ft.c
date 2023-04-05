@@ -6,13 +6,11 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:58:05 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 19:30:02 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:35:04 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	exceptions_atoi(const char *str);
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -39,11 +37,12 @@ void	ft_bzero(void *s, size_t n)
 		cs[i++] = '\0';
 }
 
-long	ft_atoi(const char *str, t_lst *stack)
+long	ft_atoi(const char *str, t_lst *stack, char **res_split)
 {
 	long int	result;
 	int			sign;
 
+	(void) res_split;
 	result = 0;
 	sign = 1;
 	while (*str == 32)
@@ -59,11 +58,7 @@ long	ft_atoi(const char *str, t_lst *stack)
 	}
 	while (*str >= '0' && *str <= '9')
 		result = (result * 10) + *(str++) - '0';
-	if (*str && !(*str >= '0' && *str <= '9'))
-	{
-		ft_lstclear(&stack);
-		error();
-	}
+	exceptions_atoi_2(str, result * sign, stack);
 	return (result * sign);
 }
 
@@ -86,4 +81,18 @@ int	exceptions_atoi(const char *str)
 	if ((str[i] == '-' && !((str[i + 1] >= '0' && *str <= '9'))))
 		error();
 	return (res);
+}
+
+void	exceptions_atoi_2(const char *str, long result, t_lst *stack)
+{
+	if (*str && !(*str >= '0' && *str <= '9'))
+	{
+		ft_lstclear(&stack);
+		error();
+	}
+	if (result > 2147483647 || result < -2147483648)
+	{
+		error();
+		ft_lstclear(&stack);
+	}
 }

@@ -6,7 +6,7 @@
 #    By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 11:49:08 by jdefayes          #+#    #+#              #
-#    Updated: 2023/04/03 20:12:24 by jdefayes         ###   ########.fr        #
+#    Updated: 2023/04/04 18:48:57 by jdefayes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ FLAGS	= -Wall -Werror -Wextra -g
 CC		= gcc
 RM		= rm -f
 
+GUI		= python3 pyviz.py `ruby -e "puts (-50..50).to_a.shuffle.join(' ')"`
+
 ###################################
 ##RULES
 all: $(NAME)
@@ -44,6 +46,10 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+
+gui :	all
+		@$(GUI)
+		@make fclean
 
 clean:
 	$(RM) $(OBJ)

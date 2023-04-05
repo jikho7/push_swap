@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:29:04 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 19:53:08 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:33:32 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int		ft_lstsize(t_lst *lst);
 t_lst	*ft_lstlast(t_lst *lst);
 void	ft_lstclear(t_lst **lst);
 void	ft_lstdelone(t_lst *lst);
-long	ft_atoi(const char *str, t_lst *stack);
+long	ft_atoi(const char *str, t_lst *stack, char **res_split);
+int		exceptions_atoi(const char *str);
+void	exceptions_atoi_2(const char *str, long result, t_lst *stack);
 
 void	add_front(t_lst **head, t_lst *node_to_add);
 void	add_back(t_lst **head, t_lst *node_to_add);

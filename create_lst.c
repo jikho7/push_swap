@@ -6,7 +6,7 @@
 /*   By: jdefayes <jdefayes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:59:26 by jdefayes          #+#    #+#             */
-/*   Updated: 2023/04/03 21:11:35 by jdefayes         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:15:36 by jdefayes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ t_lst	*create_lst(int ac, char **av, char **res_split)
 		stack_a = handle_str(res_split);
 	else if (ac > 2)
 	{
-		stack_a = ft_lstnew(ft_atoi(av[1], stack_a));
+		stack_a = ft_lstnew(ft_atoi(av[1], stack_a, res_split));
 		i = 2;
 		while (i < ac)
 		{
-			tmp = ft_lstnew(ft_atoi(av[i], stack_a));
+			tmp = ft_lstnew(ft_atoi(av[i], stack_a, res_split));
 			add_back(&stack_a, tmp);
 			i++;
 		}
@@ -51,7 +51,7 @@ t_lst	*handle_str(char **str)
 	tab = malloc(sizeof(long) * size_tab);
 	while (i < size_tab)
 	{
-		tab[i] = ft_atoi(str[i], stack_a);
+		tab[i] = ft_atoi(str[i], stack_a, str);
 		i++;
 	}
 	stack_a = generate_lst(stack_a, size_tab, tab, 1);
